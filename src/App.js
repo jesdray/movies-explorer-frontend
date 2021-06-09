@@ -1,24 +1,37 @@
 import logo from './logo.svg';
 import './App.css';
+import { loggedInContext } from "./contexts/loggedInContext"
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <loggedInContext.Provider value={loggedIn}>
+      <Switch>
+        <div className="page">
+          <Header />
+          <Route path="/">
+            <Main />
+          </Route>
+          <Route path="/movies">
+            <Movies />
+          </Route>
+          <Route path="/saved-movies">
+            <SavedMovies />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/signin">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Register />
+          </Route>
+          <Footer />
+        </div>
+      </Switch>
+    </loggedInContext.Provider>
   );
 }
 
