@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../images/logo.svg;";
+import logo from "../images/logo.svg";
 import { loggedInContext } from '../contexts/loggedInContext'
 
 function Header(props) {
