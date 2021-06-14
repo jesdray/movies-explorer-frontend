@@ -10,18 +10,20 @@ import SavedMovies from "./SavedMovies";
 import Profile from "./Profile";
 import Login from './Login';
 import Register from './Register';
-// import { loggedInContext } from "../contexts/loggedInContext"
+import { loggedInContext } from "../contexts/loggedInContext"
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   return (
     <>
-      <Switch>
-        <div className="page">
-          <Header />
-        </div>
-      </Switch>
+      <loggedInContext.Provider value={loggedIn}>
+        <Switch>
+          <div className="page">
+            <Header />
+          </div>
+        </Switch>
+      </loggedInContext.Provider>
     </>
   );
 }
