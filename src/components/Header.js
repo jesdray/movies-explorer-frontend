@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.svg";
+import image from "../images/header_image.svg"
 import { loggedInContext } from '../contexts/loggedInContext'
 
 function Header(props) {
@@ -26,12 +27,20 @@ function Header(props) {
     }
     return (
         <header className="header header_bg">
-            <button className="header__logo header_bg" to="/"></button>
-            <div className="header__navTab">
+            <div className="header__box">
+                <img src={logo} alt="Лого" className="header__logo"></img>
                 <menu className="header__menu">
-                    <Link href="#" className="header__link" to="/movies"></Link>
-                    <button className="header__button"></button>
+                    <Link href="#" className="header__link" to="/signup">Регистрация</Link>
+                    <button className="header__button header__button_black" to="/signin">Войти</button>
                 </menu>
+            </div>
+            <div className="header__box header__box_column">
+                <div className="header__minibox">
+                    <h1 className="header__title">Учебный проект студента факультета Веб-разработки.</h1>
+                </div>
+                <div className="header__minibox">
+                    <img className="header__img" src={image} alt="Изображение"></img>
+                </div>
             </div>
         </header>
     );

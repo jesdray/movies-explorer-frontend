@@ -1,8 +1,8 @@
-.header {
+.header__menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }

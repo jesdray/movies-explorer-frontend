@@ -10,6 +10,7 @@ import SavedMovies from "./SavedMovies";
 import Profile from "./Profile";
 import Login from './Login';
 import Register from './Register';
+import AboutProject from "./AboutProject";
 import { loggedInContext } from "../contexts/loggedInContext"
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Switch>
           <div className="page">
             <Header />
+            <AboutProject />
+            <Footer />
           </div>
         </Switch>
       </loggedInContext.Provider>

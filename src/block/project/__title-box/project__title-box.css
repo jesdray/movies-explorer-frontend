@@ -1,0 +1,7 @@
+.project__title-box {
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 85%;
+}

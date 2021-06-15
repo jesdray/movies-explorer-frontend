@@ -1,0 +1,9 @@
+.footer__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 20px 0;
+    width: 30%;
+}
