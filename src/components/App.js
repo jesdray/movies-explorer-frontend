@@ -23,9 +23,11 @@ function App() {
       <Switch>
         <div className="page">
           <Header />
-          <AboutProject />
-          <Techs />
-          <AboutMe />
+          <Main
+            aboutProject={AboutProject}
+            techs={Techs}
+            aboutMe={AboutMe}
+            />
           <Footer />
         </div>
       </Switch>

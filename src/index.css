@@ -14,6 +14,7 @@
 @import url("./block/header/__button/_black/header__button_black.css");
 @import url("./block/header/__logo/header__logo.css");
 @import url("./block/header/__img/header__img.css");
+@import url("./block/header/__button/_profile/header__button_profile.css");
 
 @import url("./block/footer/footer.css");
 @import url("./block/footer/__box/footer__box.css");

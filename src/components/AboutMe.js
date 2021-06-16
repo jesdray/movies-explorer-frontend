@@ -23,6 +23,9 @@ function AboutMe(props) {
                 </div>
                 <div className="me__avatar"></div>
             </div>
+            <div className="me__link-box">
+
+            </div>
         </div>
     );
 }
