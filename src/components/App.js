@@ -11,23 +11,25 @@ import Profile from "./Profile";
 import Login from './Login';
 import Register from './Register';
 import AboutProject from "./AboutProject";
-import { loggedInContext } from "../contexts/loggedInContext"
+import Techs from "./Techs";
+import AboutMe from "./AboutMe";
+import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   return (
-    <>
-      <loggedInContext.Provider value={loggedIn}>
-        <Switch>
-          <div className="page">
-            <Header />
-            <AboutProject />
-            <Footer />
-          </div>
-        </Switch>
-      </loggedInContext.Provider>
-    </>
+    <loggedInContext.Provider value={loggedIn}>
+      <Switch>
+        <div className="page">
+          <Header />
+          <AboutProject />
+          <Techs />
+          <AboutMe />
+          <Footer />
+        </div>
+      </Switch>
+    </loggedInContext.Provider>
   );
 }
 

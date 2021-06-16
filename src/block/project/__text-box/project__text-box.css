@@ -1,4 +1,6 @@
 .project__text-box {
+    padding-top: 70px;
+    width: 47%;
     display: flex;
     flex-direction: column;
 }

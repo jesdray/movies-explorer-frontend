@@ -26,7 +26,29 @@
 @import url("./block/project/project.css");
 @import url("./block/project/__title-box/project__title-box.css");
 @import url("./block/project/__box/project__box.css");
+@import url("./block/project/__text-box/project__text-box.css");
 @import url("./block/project/__title/project__title.css");
+@import url("./block/project/__text-title/project__text-title.css");
+@import url("./block/project/__text/project__text.css");
+@import url("./block/project/__time-line/project__time-line.css");
+@import url("./block/project/__back/project__back.css");
+@import url("./block/project/__front/project__front.css");
+@import url("./block/project/__stage/project__stage.css");
+
+@import url("./block/techs/techs.css");
+@import url("./block/techs/__title-box/techs__title-box.css");
+@import url("./block/techs/__title/techs__title.css");
+@import url("./block/techs/__box/techs__box.css");
+@import url("./block/techs/__text-title/techs__text-title.css");
+@import url("./block/techs/__text/techs__text.css");
+@import url("./block/techs/__element-box/techs__element-box.css");
+@import url("./block/techs/__element/techs__element.css");
+@import url("./block/techs/__element-text/techs__element-text.css");
+
+@import url("./block/me/me.css");
+@import url("./block/me/__title-box/me__title-box.css");
+@import url("./block/me/__title/me__title.css");
+
 
 body {
   margin: 0;

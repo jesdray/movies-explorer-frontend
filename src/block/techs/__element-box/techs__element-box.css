@@ -1,0 +1,5 @@
+.techs__element-box {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 100px;
+}
