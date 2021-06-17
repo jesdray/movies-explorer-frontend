@@ -11,16 +11,18 @@ function Header(props) {
     if (loggedIn) {
         return (
             <header className="header">
-                <img src={logo} alt="Лого" className="header__logo"></img>
-                <div className="header__navTab">
-                    <menu className="header__menu">
-                        <Link className="header__link header__link_active" to="/movies">Фильмы</Link>
-                        <Link className="header__link" to="/saved-movies">Сохранённые фильмы</Link>
-                    </menu>
-                    <menu className="header__menu">
-                        <Link href="#" className="header__link" to="/movies"></Link>
-                        <button className="header__button header__button_profile"></button>
-                    </menu>
+                <div className="header__box">
+                    <img src={logo} alt="Лого" className="header__logo"></img>
+                    <div className="header__navTab">
+                        <menu className="header__menu">
+                            <Link className="header__link header__link_black header__link_active" to="/movies">Фильмы</Link>
+                            <Link className="header__link header__link_black" to="/saved-movies">Сохранённые фильмы</Link>
+                        </menu>
+                        <menu className="header__menu">
+                            <Link href="#" className="header__link header__link_black" to="/movies">Аккаунт</Link>
+                            <button className="header__button header__button_profile"></button>
+                        </menu>
+                    </div>
                 </div>
             </header>
         );

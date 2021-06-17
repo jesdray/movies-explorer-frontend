@@ -1,3 +1,12 @@
 .header__button_profile {
-    background-image: url("../../../../images/header_akk.svg");
+    background-image: url("../../../../images/header_icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    width: 26px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
 }

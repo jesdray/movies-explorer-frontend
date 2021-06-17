@@ -13,10 +13,11 @@ import Register from './Register';
 import AboutProject from "./AboutProject";
 import Techs from "./Techs";
 import AboutMe from "./AboutMe";
+import SearchForm from "./SearchForm"
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
 
   return (
     <loggedInContext.Provider value={loggedIn}>
@@ -27,6 +28,7 @@ function App() {
             aboutProject={AboutProject}
             techs={Techs}
             aboutMe={AboutMe}
+            searchForm={SearchForm}
             />
           <Footer />
         </div>

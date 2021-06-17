@@ -6,15 +6,17 @@ function Main(props) {
 
     if(loggedIn) {
         return (
-            <></>
+            <>
+                <props.searchForm />
+            </>
         );
     }
     return (
-        <>
+        <div className="main">
             <props.aboutProject />
             <props.techs />
             <props.aboutMe />
-        </>
+        </div>
     );
 }
 

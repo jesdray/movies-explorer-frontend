@@ -1,0 +1,14 @@
+.search__button-checkbox {
+    display: flex;
+    border: none;
+    outline: none;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #EBEBEB;
+    cursor: pointer;
+    width: 36px;
+    height: 20px;
+    border-radius: 20px;
+    margin: 0;
+    padding: 0;
+}

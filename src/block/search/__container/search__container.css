@@ -1,0 +1,17 @@
+.search__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-start;
+    padding-top: 26px;
+}
+
+.search__container input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.search__container input:checked .search__input-checkbox {
+    background-color: #2BE080;
+}
