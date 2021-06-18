@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
-    width: 85%;
+    width: 100%;
+    max-width: 1140px;
     margin: 0 auto;
     padding: 70px 0 54px;
 }

@@ -14,6 +14,7 @@ import AboutProject from "./AboutProject";
 import Techs from "./Techs";
 import AboutMe from "./AboutMe";
 import SearchForm from "./SearchForm"
+import MoviesCardList from "./MoviesCardList"
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             techs={Techs}
             aboutMe={AboutMe}
             searchForm={SearchForm}
+            moviesCardList ={MoviesCardList}
             />
           <Footer />
         </div>

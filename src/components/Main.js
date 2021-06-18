@@ -8,6 +8,7 @@ function Main(props) {
         return (
             <>
                 <props.searchForm />
+                <props.moviesCardList />
             </>
         );
     }
