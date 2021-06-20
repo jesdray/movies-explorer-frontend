@@ -1,0 +1,9 @@
+.me__avatar {
+    background-image: url("../../../images/me.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+}

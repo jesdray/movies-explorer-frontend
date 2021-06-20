@@ -1,18 +1,6 @@
 import React from "react";
 
 function SearchForm(props) {
-    const [shortFilms, setShortFilms] = React.useState(true);
-    const [checkboxActive, setCheckboxActive] = React.useState(false);
-    const [checkboxClass, setCheckboxClass] = React.useState("search__button-checkbox");
-
-    function checkbox() {
-        setCheckboxActive(!checkboxActive);
-
-        if (checkboxActive) {
-            setCheckboxClass("search__button-checkbox search__button-checkbox_active");
-        }
-        setCheckboxClass("search__button-checkbox");
-    }
 
     return (
         <div className="search">
@@ -22,9 +10,9 @@ function SearchForm(props) {
                     <button className="search__search-button">Поиск</button>
                 </div>
                 <div className="search__container">
-                    <button className={checkboxActive} onClick="checkbox">
-                        <div className="search__circle" />
-                    </button>
+                    <input className="search__checkbox" type="checkbox" id="short-film" name="short film" value="true"></input>
+                    <label for="short-film"><div className="search__circle"/></label>
+                    <p className="search__checkbox-name">Короткометражки</p>
                 </div>
             </form>
         </div>

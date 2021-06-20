@@ -5,5 +5,6 @@
     align-items: center;
     padding: 110px 0;
     margin: 0;
-    width: 85%;
+    width: 100%;
+    max-width: 1140px;
 }

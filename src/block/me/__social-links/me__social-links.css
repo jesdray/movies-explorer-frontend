@@ -1,0 +1,6 @@
+.me__social-links {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 99px 0 0;
+}

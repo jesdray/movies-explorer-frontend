@@ -12,7 +12,7 @@ function Footer(props) {
                 <menu className="footer__menu">
                     <a href="https://praktikum.yandex.ru/" className="footer__link">Яндекс.Практикум</a>
                     <a href="https://github.com/jesdray" className="footer__link">Github</a>
-                    <a href="#" className="footer__link">Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=100069625963737" className="footer__link">Facebook</a>
                 </menu>
             </div>
         </footer>

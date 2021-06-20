@@ -15,6 +15,8 @@ import Techs from "./Techs";
 import AboutMe from "./AboutMe";
 import SearchForm from "./SearchForm"
 import MoviesCardList from "./MoviesCardList"
+import Portfolio from "./Portfolio"
+import Promo from "./Promo";
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
@@ -24,39 +26,40 @@ function App() {
     <loggedInContext.Provider value={loggedIn}>
       <Switch>
         <div className="page">
-          <Header />
-          <Main
-            aboutProject={AboutProject}
-            techs={Techs}
-            aboutMe={AboutMe}
-            searchForm={SearchForm}
-            moviesCardList ={MoviesCardList}
+          <Route exact path="/">
+            <Header />
+            <Main
+              promo={Promo}
+              aboutProject={AboutProject}
+              techs={Techs}
+              aboutMe={AboutMe}
+              portfolio={Portfolio}
             />
-          <Footer />
+            <Footer />
+          </Route>
+          <Route path="/movies">
+            <Header />
+            <Movies
+              searchForm={SearchForm}
+              moviesCardList={MoviesCardList}
+            />
+            <Footer />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/signup">
+            <Login />
+          </Route>
+          <Route path="/signin">
+            <Register />
+          </Route>
         </div>
       </Switch>
-    </loggedInContext.Provider>
+    </loggedInContext.Provider >
   );
 }
 
 export default App;
 
-
-          //  ( <Route path="/">
-          //     <Main />
-          //   </Route>
-          //   <Route path="/movies">
-          //     <Movies />
-          //   </Route>
-          //   <Route path="/saved-movies">
-          //     <SavedMovies />
-          //   </Route>
-          //   <Route path="/profile">
-          //     <Profile />
-          //   </Route>
-          //   <Route path="/signin">
-          //     <Login />
-          //   </Route>
-          //   <Route path="/signup">
-          //     <Register />
-          //   </Route>)
+// /saved-movies

@@ -10,21 +10,21 @@ function AboutMe(props) {
             </div>
             <div className="me__box">
                 <div className="me__information">
-                    <h3 className="me__name">Евгений</h3>
-                    <p className="me__profession">Фронтенд-разработчик, 19 лет</p>
-                    <p className="me__about">Я родился в Назарово, живу в Красноярске.
-                        Образование среднее общее.
-                        Люблю фильмы ужасов, музыку и видео игры.
-                    </p>
-                    <menu className="me__links">
-                        <a href="#">Facebook</a>
-                        <a href="#">Github</a>
+                    <div className="me__text-box">
+                        <h3 className="me__name">Евгений</h3>
+                        <p className="me__profession">Фронтенд-разработчик, 19 лет</p>
+                        <p className="me__about">Я родился в Назарово, живу в Красноярске.
+                            Образование среднее общее.
+                            Люблю фильмы ужасов, музыку и видео игры.
+                            Кодить начал недавно.
+                        </p>
+                    </div>
+                    <menu className="me__social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100069625963737" className="me__social-link">Facebook</a>
+                        <a href="https://github.com/jesdray" className="me__social-link">Github</a>
                     </menu>
                 </div>
                 <div className="me__avatar"></div>
-            </div>
-            <div className="me__link-box">
-
             </div>
         </div>
     );

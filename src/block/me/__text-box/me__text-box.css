@@ -1,0 +1,4 @@
+.me__text-box {
+    display: flex;
+    flex-direction: column;
+}

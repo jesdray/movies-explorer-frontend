@@ -6,11 +6,9 @@
     border-radius: 10px;
     width: 90px;
     min-height: 60px;
-}
-
-.techs__element:nth-child(1n) {
     margin-right: 10px;
 }
+
 .techs__element:nth-last-child(1) {
     margin-right: 0;
 }

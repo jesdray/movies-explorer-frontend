@@ -1,0 +1,7 @@
+.me__box {
+    display: flex;
+    flex-direction: row;
+    max-width: 1140px;
+    width: 100%;
+    padding-top: 66px;
+}

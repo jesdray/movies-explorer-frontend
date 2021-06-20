@@ -3,6 +3,7 @@
     justify-content: start;
     align-items: flex-start;
     border-bottom: 1px solid #000;
-    width: 85%;
+    width: 100%;
+    max-width: 1140px;
     padding-top: 100px;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import img from "../images/test.jpg"
 
 function MoviesCard(props) {
-    const link = window.location.pathname;
 
     return(
         <div className="card">
