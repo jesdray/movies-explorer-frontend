@@ -17,6 +17,7 @@ import SearchForm from "./SearchForm"
 import MoviesCardList from "./MoviesCardList"
 import Portfolio from "./Portfolio"
 import Promo from "./Promo";
+import NotFound from "./NotFound"
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
@@ -45,7 +46,16 @@ function App() {
             />
             <Footer />
           </Route>
+          <Route path="/saved-movies">
+            <Header />
+            <SavedMovies
+              searchForm={SearchForm}
+              moviesCardList={MoviesCardList}
+            />
+            <Footer />
+          </Route>
           <Route path="/profile">
+            <Header />
             <Profile />
           </Route>
           <Route path="/signup">
@@ -53,6 +63,9 @@ function App() {
           </Route>
           <Route path="/signin">
             <Register />
+          </Route>
+          <Route path="/404">
+            <NotFound />
           </Route>
         </div>
       </Switch>
