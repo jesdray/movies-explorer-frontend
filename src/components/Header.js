@@ -16,7 +16,7 @@ function Header(props) {
                             <Link className="header__link header__link_black" to="/saved-movies">Сохранённые фильмы</Link>
                         </menu>
                         <menu className="header__menu">
-                            <Link href="#" className="header__link header__link_black header__link_active" to="/profile">Аккаунт</Link>
+                            <Link className="header__link header__link_black header__link_active" to="/profile">Аккаунт</Link>
                             <Link className="header__button header__button_profile" to="/profile"></Link>
                         </menu>
                     </div>

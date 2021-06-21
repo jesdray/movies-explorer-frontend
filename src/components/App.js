@@ -18,6 +18,7 @@ import MoviesCardList from "./MoviesCardList"
 import Portfolio from "./Portfolio"
 import Promo from "./Promo";
 import NotFound from "./NotFound"
+import NavTab from "./NavTab";
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
           </Route>
           <Route path="/404">
             <NotFound />
+          </Route>
+          <Route path="/nav">
+            <NavTab />
           </Route>
         </div>
       </Switch>

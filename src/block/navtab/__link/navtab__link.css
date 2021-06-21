@@ -1,0 +1,13 @@
+.navtab__link {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.navtab__link:nth-child(1) {
+    margin: 0 17px 0 0;
+}

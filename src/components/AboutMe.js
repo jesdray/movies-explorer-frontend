@@ -12,8 +12,9 @@ function AboutMe(props) {
                 <div className="me__information">
                     <div className="me__text-box">
                         <h3 className="me__name">Евгений</h3>
-                        <p className="me__profession">Фронтенд-разработчик, 19 лет</p>
-                        <p className="me__about">Я родился в Назарово, живу в Красноярске.
+                        <p className="me__profession">Веб-разработчик, 19 лет</p>
+                        <p className="me__about">
+                            Я родился в Назарово, живу в Красноярске.
                             Образование среднее общее.
                             Люблю фильмы ужасов, музыку и видео игры.
                             Кодить начал недавно.
