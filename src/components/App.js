@@ -18,18 +18,29 @@ import MoviesCardList from "./MoviesCardList"
 import Portfolio from "./Portfolio"
 import Promo from "./Promo";
 import NotFound from "./NotFound"
-import NavTab from "./NavTab";
+import Navigation from "./Navigation";
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(true);
+  const [openNavigation, setOpenNavigation] = React.useState(false)
+
+  function openNavTab() {
+    setOpenNavigation(true);
+  };
+
+  function closeNavTab() {
+    setOpenNavigation(false);
+  }
 
   return (
     <loggedInContext.Provider value={loggedIn}>
       <Switch>
         <div className="page">
           <Route exact path="/">
-            <Header />
+            <Header
+              openNavTab={openNavTab}
+            />
             <Main
               promo={Promo}
               aboutProject={AboutProject}
@@ -40,7 +51,9 @@ function App() {
             <Footer />
           </Route>
           <Route path="/movies">
-            <Header />
+            <Header
+              openNavTab={openNavTab}
+            />
             <Movies
               searchForm={SearchForm}
               moviesCardList={MoviesCardList}
@@ -48,7 +61,9 @@ function App() {
             <Footer />
           </Route>
           <Route path="/saved-movies">
-            <Header />
+            <Header
+              openNavTab={openNavTab}
+            />
             <SavedMovies
               searchForm={SearchForm}
               moviesCardList={MoviesCardList}
@@ -56,7 +71,9 @@ function App() {
             <Footer />
           </Route>
           <Route path="/profile">
-            <Header />
+            <Header
+              openNavTab={openNavTab}
+            />
             <Profile />
           </Route>
           <Route path="/signup">
@@ -68,9 +85,10 @@ function App() {
           <Route path="/404">
             <NotFound />
           </Route>
-          <Route path="/nav">
-            <NavTab />
-          </Route>
+          <Navigation
+            open={openNavigation}
+            closeNavTab={closeNavTab}
+          />
         </div>
       </Switch>
     </loggedInContext.Provider >
