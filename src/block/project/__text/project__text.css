@@ -5,3 +5,10 @@
     padding: 0;
     margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .project__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}

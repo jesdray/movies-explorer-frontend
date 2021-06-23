@@ -7,3 +7,11 @@
     height: 327px;
     border-radius: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .me__avatar {
+        width: 70%;
+        width: 255px;
+        height: 307px;
+    }
+}

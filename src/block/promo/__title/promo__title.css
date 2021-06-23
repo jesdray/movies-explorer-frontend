@@ -5,4 +5,13 @@
     line-height: 52px;
     text-align: left;
     color: #fff;
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .promo__title {
+        width: 680px;
+        padding: 300px 0 0;
+        text-align: center;
+    }
 }

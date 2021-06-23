@@ -3,3 +3,18 @@
     height: 244px;
     padding: 102px 0 60px 200px;
 }
+
+@media screen and (max-width: 768px) {
+    .promo__img {
+        width: 680px;
+        height: 230px;
+        padding: 140px 0 70px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo__img {
+        width: 320px;
+        height: 320px;
+    }
+}

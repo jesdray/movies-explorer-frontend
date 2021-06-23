@@ -2,9 +2,8 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 100%;
-    max-width: 1140px;
     border-bottom: 1px solid #000;
     padding-top: 100px;
-    max-width: 1140px;
+    width: 90%;
+    max-width: 1280px;
 }

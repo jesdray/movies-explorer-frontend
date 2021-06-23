@@ -1,7 +1,7 @@
 .me__box {
     display: flex;
     flex-direction: row;
-    max-width: 1140px;
+    justify-content: space-between;
     width: 100%;
     padding-top: 66px;
 }
