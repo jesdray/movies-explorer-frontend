@@ -7,3 +7,10 @@
     margin: 0;
     padding-bottom: 30px;
 }
+
+@media screen and (max-width: 320px) {
+    .portfolio__title {
+        padding-bottom: 20px;
+        font-size: 14px;
+    }
+}

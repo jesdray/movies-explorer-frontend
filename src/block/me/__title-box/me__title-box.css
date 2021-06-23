@@ -6,3 +6,9 @@
     width: 100%;
     padding-top: 100px;
 }
+
+@media screen and (max-width: 320px) {
+    .me__title-box {
+        padding-top: 70px;
+    }
+}

@@ -6,6 +6,7 @@
     text-align: left;
     color: #fff;
     margin: 0;
+    padding-top: 50px;
 }
 
 @media screen and (max-width: 768px) {
@@ -13,5 +14,14 @@
         width: 680px;
         padding: 300px 0 0;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo__title {
+        width: 95%;
+        font-size: 31px;
+        line-height: 39px;
+        padding-top: 180px;
     }
 }

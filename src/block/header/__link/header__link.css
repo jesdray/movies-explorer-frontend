@@ -3,6 +3,12 @@
     color: #fff;
     margin-right: 20px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 16px;
+}
+
+@media screen and (max-width: 320px) {
+    .header__link {
+        font-size: 10px;
+    }
 }

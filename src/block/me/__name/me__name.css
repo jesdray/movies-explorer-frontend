@@ -12,3 +12,9 @@
         line-height: 40px;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .me__name {
+        font-size: 30px;
+    }
+}

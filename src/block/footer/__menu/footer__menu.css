@@ -13,3 +13,10 @@
         width: 40%;
     }
 }
+
+@media screen and (max-width: 320px) {
+    .footer__menu {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+}

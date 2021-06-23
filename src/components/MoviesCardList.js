@@ -36,24 +36,6 @@ function MoviesCardList(props) {
                 <MoviesCard 
                      savedMovies={props.savedMovies}
                 />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
-                <MoviesCard 
-                     savedMovies={props.savedMovies}
-                />
             </div>
             <div className="movies__box">
                 <button className="movies__button">Ещё</button>

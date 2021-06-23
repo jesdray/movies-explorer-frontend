@@ -10,3 +10,14 @@
     padding: 0;
     text-decoration: none;
 }
+
+@media screen and (max-width: 320px) {
+    .footer__link {
+        font-size: 12px;
+        margin-top: 12px;
+    }
+
+    .footer__link:nth-child(1) {
+        margin: 0;
+    }
+}

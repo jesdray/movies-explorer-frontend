@@ -4,3 +4,9 @@
     margin: 0;
     padding: 99px 0 0;
 }
+
+@media screen and (max-width: 320px) {
+    .me__social-links {
+        padding-top: 40px;
+    }
+}

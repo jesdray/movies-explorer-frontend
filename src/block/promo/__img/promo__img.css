@@ -1,20 +1,26 @@
 .promo__img {
-    width: 722px;
+    background-image: url("../../../images/promo_image.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: auto;
+    width: 100%;
     height: 244px;
-    padding: 102px 0 60px 200px;
+    margin: 100px 0 60px;
 }
 
 @media screen and (max-width: 768px) {
     .promo__img {
         width: 680px;
         height: 230px;
-        padding: 140px 0 70px;
+        margin: 140px 0 70px;
+        background-size: contain;
     }
 }
 
 @media screen and (max-width: 320px) {
     .promo__img {
-        width: 320px;
-        height: 320px;
+        width: 100%;
+        background-position: center;
+        background-size: cover;
     }
 }

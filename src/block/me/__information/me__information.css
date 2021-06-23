@@ -4,3 +4,10 @@
     justify-content: space-between;
     width: 65%;
 }
+
+@media screen and (max-width: 320px) {
+    .me__information {
+        width: 100%;
+        padding-top: 40px;
+    }
+}

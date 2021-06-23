@@ -5,3 +5,9 @@
     padding: 0 0 26px;
     margin: 0;
 }
+
+@media screen and (max-width: 320px) {
+    .project__text-title {
+        font-size: 18px;
+    }
+}

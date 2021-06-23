@@ -3,5 +3,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding-top: 66px;
+    padding-top: 60px;
+}
+
+@media screen and (max-width: 320px) {
+    .me__box {
+        flex-direction: column-reverse;
+    }
 }

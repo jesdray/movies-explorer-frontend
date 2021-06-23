@@ -7,8 +7,15 @@
 }
 
 @media screen and (max-width: 768px) {
-    .me__about {
+    .me__profession {
         font-size: 12px;
         line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .me__profession {
+        font-size: 11px;
+        padding: 20px 0;
     }
 }

@@ -12,3 +12,9 @@
 .techs__element:nth-last-child(1) {
     margin-right: 0;
 }
+
+@media screen and (max-width: 320px) {
+    .techs__element {
+        margin-right: 0;
+    }
+}
