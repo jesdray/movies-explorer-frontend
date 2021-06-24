@@ -10,3 +10,7 @@
     height: 24px;
     cursor: pointer;
 }
+
+.card__plus:hover {
+    opacity: 0.8;
+}

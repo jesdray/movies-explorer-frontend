@@ -8,6 +8,10 @@
     margin: 0;
 }
 
+.me__social-link:hover {
+    opacity: 0.7;
+}
+
 .me__social-link:nth-last-child(1) {
     padding-right: 0;
 }

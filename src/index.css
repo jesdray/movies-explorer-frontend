@@ -101,6 +101,8 @@
 
 @import url("./block/login/login.css");
 
+@import url("./block/register/register.css");
+
 @import url("./block/form/form.css");
 @import url("./block/form/__box/form__box.css");
 @import url("./block/form/__title/form__title.css");

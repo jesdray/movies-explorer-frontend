@@ -8,6 +8,10 @@
     margin-top: 220px;
 }
 
+.profile__link:hover {
+    opacity: 0.7;
+}
+
 .profile__link:nth-last-child(1) {
     margin-top: 16px;
 }

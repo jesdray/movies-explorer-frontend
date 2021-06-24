@@ -3,6 +3,6 @@
     flex-direction: column;
 }
 
-.form__box:nth-child(1) {
-    padding-bottom: 200px;
+.form__box:nth-last-child(1) {
+    padding-top: 220px;
 }
