@@ -13,7 +13,7 @@
     margin-right: 0;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .techs__element {
         margin-right: 0;
     }

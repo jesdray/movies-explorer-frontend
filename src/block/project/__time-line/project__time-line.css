@@ -9,7 +9,7 @@
     max-width: 1140px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .project__time-line {
         padding: 60px 0 90px;
     }

@@ -13,7 +13,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .me__profession {
         font-size: 11px;
         padding: 20px 0;

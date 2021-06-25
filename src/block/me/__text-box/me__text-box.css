@@ -9,7 +9,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .me__text-box {
         width: 100%;
     }

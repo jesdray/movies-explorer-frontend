@@ -5,7 +5,7 @@
     max-width: 1280px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 700px) {
     .techs__element-box {
         display: grid;
         grid-template-columns: repeat(2, min-content);

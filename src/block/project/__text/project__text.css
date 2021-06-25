@@ -13,7 +13,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .project__text {
         font-size: 11px;
     }

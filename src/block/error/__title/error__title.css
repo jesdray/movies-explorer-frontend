@@ -7,7 +7,7 @@
     padding-top: 250px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .error__title {
         font-size: 80px;
         padding-top: 200px;

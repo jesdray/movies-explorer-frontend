@@ -13,7 +13,7 @@
     opacity: 0.7;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 425px) {
     .form__link {
         padding-bottom: 30px;
         margin-bottom: 0;

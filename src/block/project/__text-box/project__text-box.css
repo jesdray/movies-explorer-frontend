@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
     .project__text-box {
         padding-top: 60px;
         width: 100%;
