@@ -10,13 +10,13 @@ function Login() {
                     <Link className="logo logo__form" to="/"></Link>
                     <h1 className="form__title">Добро пожаловать!</h1>
                     <p className="form__input-name">Имя</p>
-                    <input className="form__input"></input>
+                    <input className="form__input" required></input>
                     <span className="form__span"></span>
                     <p className="form__input-name">E-mail</p>
-                    <input className="form__input"></input>
+                    <input className="form__input" required></input>
                     <span className="form__span"></span>
                     <p className="form__input-name">Пароль</p>
-                    <input className="form__input"></input>
+                    <input className="form__input" required></input>
                     <span className="form__span"></span>
                 </div>
                 <div className="form__box">

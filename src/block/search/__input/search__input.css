@@ -9,3 +9,7 @@
     text-align: left;
     width: 90%;
 }
+
+.search__input:focus+.search__box {
+    border: 1px solid #2BE080;
+}
