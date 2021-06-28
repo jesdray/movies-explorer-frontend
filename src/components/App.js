@@ -19,6 +19,8 @@ import Portfolio from "./Portfolio"
 import Promo from "./Promo";
 import NotFound from "./NotFound"
 import Navigation from "./Navigation";
+import Preloader from "./Preloader";
+import { Api } from "../utils/api"
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {
