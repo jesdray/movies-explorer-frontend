@@ -20,7 +20,7 @@ import Promo from "./Promo";
 import NotFound from "./NotFound"
 import Navigation from "./Navigation";
 import Preloader from "./Preloader";
-import { Api } from "../utils/api"
+import { MainApi } from "../utils/MainApi"
 import { loggedInContext } from "../contexts/loggedInContext";
 
 function App() {

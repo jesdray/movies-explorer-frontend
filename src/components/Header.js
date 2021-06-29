@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { loggedInContext } from "../contexts/loggedInContext"
 
 function Header(props) {
-    const path = useHistory()
+    const path = useHistory();
+    const loggedIn = React.useContext(loggedInContext)
 
-    if (useHistory().location.pathname === "/") {
+    if (path.location.pathname === "/") {
         return (
             <header className={path.location.pathname === "/" ? "header header_bg" : "header"}>
                 <div className="header__box">
