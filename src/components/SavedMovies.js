@@ -7,6 +7,7 @@ function SavedMovies(props) {
             <props.searchForm />
             <props.moviesCardList 
                 savedMovies={true}
+                movies={props.movies}
             />
         </>
     );

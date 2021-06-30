@@ -94,6 +94,7 @@
 
 @import url("./block/card/card.css");
 @import url("./block/card/__image/card__image.css");
+@import url("./block/card/__link/card__link.css");
 @import url("./block/card/__box/card__box.css");
 @import url("./block/card/__name/card__name.css");
 @import url("./block/card/__like/card__like.css");
