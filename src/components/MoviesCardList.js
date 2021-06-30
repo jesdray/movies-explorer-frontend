@@ -32,13 +32,17 @@ function MoviesCardList(props) {
           return (
                <div className="movies">
                     <div className="movies__container">
-                         {props.saveMovies !== undefined &&
-                              props.saveMovies.map((item) => (
+                         {props.movies !== undefined &&
+                              props.movies.map((item) => (
                                    <MoviesCard
                                         key={item.id}
                                         movies={item}
+                                        saveMovie={props.saveMovie}
+                                        removeMovies={props.removeMovies}
+                                        savedMovies={props.savedMovies}
                                    />
-                              ))}
+                              ))
+                         }
                     </div>
                </div>
           )
@@ -51,6 +55,9 @@ function MoviesCardList(props) {
                               <MoviesCard
                                    key={item.id}
                                    movies={item}
+                                   saveMovie={props.saveMovie}
+                                   removeMovies={props.removeMovies}
+                                   savedMovies={props.savedMovies}
                               />
                          ))}
                </div>

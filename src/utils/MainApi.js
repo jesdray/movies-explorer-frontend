@@ -1,17 +1,18 @@
 class MainApi {
     constructor(token) {
-        this._baseUrl = "https://movies-b.students.nomoredomains.club/";
+        this._baseUrl = "http://localhost:3005/";
         this._headers = {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
         };
+        this._herf = "https://api.nomoreparties.co";
     }
 
     _checkResponse(res) {
         if (res.ok) {
             return res.json();
         }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return Promise.reject(res);
     }
 
     getUser(JWT) {
@@ -36,7 +37,7 @@ class MainApi {
         }).then(this._checkResponse);
     }
 
-    signUp(name, password, email) {
+    signUp(name, email, password) {
         return fetch(`${this._baseUrl}signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -49,7 +50,7 @@ class MainApi {
         }).then(this._checkResponse);
     }
 
-    signIn(password, email) {
+    signIn(email, password) {
         return fetch(`${this._baseUrl}signin`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -69,24 +70,21 @@ class MainApi {
         })
     }
 
-    getSaveMovies(JWT) {
+    getSaveMovies() {
         return fetch(`${this._baseUrl}movies`, {
             method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${JWT}`
-            },
+            headers: this._headers,
         }).then(this._checkResponse);
     }
 
-    removeMovies(movies) {
-        return fetch(`${this._baseUrl}cards/${movies}`, {
+    removeMovies(movieId) {
+        return fetch(`${this._baseUrl}movies/${movieId}`, {
             method: "DELETE",
             headers: this._headers,
         }).then(this._checkResponse);
     }
 
-    createMovies(data) {
+    createMovies(data, image, thumbnail) {
         return fetch(`${this._baseUrl}movies`, {
             method: "POST",
             headers: this._headers,
@@ -96,12 +94,12 @@ class MainApi {
                 "duration": data.duration,
                 "year": data.year,
                 "description": data.description,
-                "image": data.image,
-                "trailer": data.trailer,
+                "image": image,
+                "trailer": data.trailerLink,
                 "nameRU": data.nameRU,
                 "nameEN": data.nameEN,
-                "thumbnail": data.thumbnail,
-                "movieId": data.movieId,
+                "thumbnail": thumbnail,
+                "movieId": data.id,
             })
         }).then(this._checkResponse);
     }

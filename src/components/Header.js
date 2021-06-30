@@ -7,7 +7,7 @@ function Header(props) {
     const path = useHistory();
 
     if (loggedIn) {
-        if (window.innerWidth < 769) {
+        if (props.sizeWindow < 769) {
             return (
                 <header className={path.location.pathname === "/" ? "header header_bg" : "header"}>
                     <div className="header__box">
