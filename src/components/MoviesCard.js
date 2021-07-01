@@ -1,12 +1,15 @@
 import React from "react";
 
 function MoviesCard(props) {
-    const [isLiked, setIsLiked] = React.useState(false);
     const href = "https://api.nomoreparties.co";
     const hour = Math.floor(props.movies.duration / 60);
     const minutes = props.movies.duration - (hour * 60);
-    const image = href + (props.savedMovies ? props.movies.image : props.movies);
+    const image = href + (props.savedMovies ? props.movies : props.movies.image.url);
     const thumbnail = href + props.thumbnailUrl;
+    
+    const like = !props.savedMovies && props.saveMovies.some((movie) => movie.movieId === props.movies.movieId);
+
+    const [isLiked, setIsLiked] = React.useState(like);
 
     function onCardLike() {
         if (!isLiked) {

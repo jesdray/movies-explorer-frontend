@@ -1,15 +1,18 @@
 import React from "react";
 
 function SavedMovies(props) {
-    console.log(props.movies);
+    const [movies, setMovies] = React.useState(props.movies)
 
     return (
-        <>  
-            <props.searchForm />
+        <>
+            <props.searchForm
+                movies={props.movies}
+                setMovies={setMovies}
+            />
             <props.Preloader />
             <props.moviesCardList
                 savedMovies={true}
-                movies={props.movies}
+                movies={movies}
                 imageUrl={props.movies.image}
                 thumbnailUrl={props.movies.thumbnail}
                 saveMovie={props.saveMovie}

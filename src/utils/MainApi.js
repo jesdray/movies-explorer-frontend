@@ -1,6 +1,8 @@
+// https://movies-b.students.nomoredomains.club
+
 class MainApi {
     constructor(token) {
-        this._baseUrl = "https://movies-b.students.nomoredomains.club";
+        this._baseUrl = "http://localhost:3005/";
         this._headers = {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -25,14 +27,14 @@ class MainApi {
         }).then(this._checkResponse);
     }
 
-    editUser(data) {
+    editUser(name, email) {
         return fetch(`${this._baseUrl}users/me`, {
             method: "PATCH",
             headers: this._headers,
 
             body: JSON.stringify({
-                "email": data.email,
-                "name": data.name,
+                "email": email,
+                "name": name,
             }),
         }).then(this._checkResponse);
     }

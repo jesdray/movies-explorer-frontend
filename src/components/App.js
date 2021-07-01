@@ -28,7 +28,7 @@ import { PreloaderActiveContext } from "../contexts/PreloaderActiveContext";
 
 function App() {
   const history = useHistory()
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [openNavigation, setOpenNavigation] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [saveMovies, setSaveMovies] = React.useState([]);
@@ -36,133 +36,7 @@ function App() {
   const [preloaderActive, setPreloaderActive] = React.useState(false);
   const [sizeWindow, setSizeWindow] = React.useState(window.innerWidth)
 
-  const markUpLoggedIn = (
-    <div className="page">
-      <Route exact path="/">
-        <Header
-          openNavTab={openNavTab}
-          sizeWindow={sizeWindow}
-        />
-        <Main
-          promo={Promo}
-          aboutProject={AboutProject}
-          techs={Techs}
-          aboutMe={AboutMe}
-          portfolio={Portfolio}
-        />
-        <Footer />
-      </Route>
-      <Route path="/movies">
-        <Header
-          openNavTab={openNavTab}
-          sizeWindow={sizeWindow}
-        />
-        <Movies
-          searchForm={SearchForm}
-          moviesCardList={MoviesCardList}
-          movies={movies}
-          saveMovie={saveMovie}
-          removeMovies={removeMovies}
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          sizeWindow={sizeWindow}
-        />
-        <Footer />
-      </Route>
-      <Route path="/saved-movies">
-        <Header
-          openNavTab={openNavTab}
-          sizeWindow={sizeWindow}
-        />
-        <SavedMovies
-          searchForm={SearchForm}
-          moviesCardList={MoviesCardList}
-          movies={saveMovies}
-          saveMovie={saveMovie}
-          removeMovies={removeMovies}
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          sizeWindow={sizeWindow}
-        />
-        <Footer />
-      </Route>
-      <Route path="/profile">
-        <Header
-          openNavTab={openNavTab}
-          sizeWindow={sizeWindow}
-        />
-        <Profile
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-        />
-      </Route>
-      <Route path="/signup">
-        <Register
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          onRegister={onRegister}
-        />
-      </Route>
-      <Route path="/signin">
-        <Login
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          onLogin={onLogin}
-        />
-      </Route>
-      <Route path="/404">
-        <NotFound />
-      </Route>
-      <Navigation
-        open={openNavigation}
-        closeNavTab={closeNavTab}
-      />
-    </div>
-  )
-
-  const markUpNoLogedIn = (
-    <div className="page">
-      <Route exact path="/">
-        <Header
-          openNavTab={openNavTab}
-          sizeWindow={sizeWindow}
-        />
-        <Main
-          promo={Promo}
-          aboutProject={AboutProject}
-          techs={Techs}
-          aboutMe={AboutMe}
-          portfolio={Portfolio}
-        />
-        <Footer />
-      </Route>
-      <Route path="/signup">
-        <Register
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          onRegister={onRegister}
-        />
-      </Route>
-      <Route path="/signin">
-        <Login
-          Preloader={Preloader}
-          setPreloaderActive={setPreloaderActive}
-          onLogin={onLogin}
-        />
-      </Route>
-      <Route path="/404">
-        <NotFound />
-      </Route>
-      <Navigation
-        open={openNavigation}
-        closeNavTab={closeNavTab}
-      />
-    </div>
-  )
-
-  const markUp = loggedIn ? markUpLoggedIn : markUpNoLogedIn
-
-    window.addEventListener("resize", resizeThrottler, false)
+  window.addEventListener("resize", resizeThrottler, false)
 
   let resizeTimeout = "";
   function resizeThrottler(size) {
@@ -220,8 +94,8 @@ function App() {
             movieId: item.id,
           };
         });
-        setMovies(cardMovies);
-        setPreloaderActive(false)
+
+        setMovies(cardMovies)
       })
       .catch((err) => {
         console.log(err);
@@ -232,7 +106,6 @@ function App() {
     mainApi
       .getSaveMovies()
       .then((movies) => {
-        console.log(movies.data);
         setSaveMovies(movies.data)
       })
       .catch((err) => {
@@ -243,24 +116,40 @@ function App() {
   React.useEffect(() => {
     tokenCheck();
     if (localStorage.getItem('token')) {
+      apiGetSaveMovies();
       apiGetMovies();
       apiGetUser();
-      apiGetSaveMovies();
     }
   }, []);
+
+  console.log(movies);
+  console.log(saveMovies);
 
   function saveMovie(data, image, thumbnail) {
     mainApi
       .createMovies(data, image, thumbnail)
-      .then((newSaveMovies) => {
+      .then((movie) => {
+        console.log(movie);
+        const newSaveMovies = {
+          id: movie.data.id,
+          country: movie.data.country,
+          director: movie.data.director,
+          duration: movie.data.duration,
+          year: movie.data.year,
+          description: movie.data.description,
+          image: movie.data.image,
+          trailerLink: movie.data.trailerLink,
+          nameRU: movie.data.nameRU,
+          nameEN: movie.data.nameEN,
+          thumbnail: movie.data.thumbnail,
+          movieId: movie.data.id,
+        };
         setSaveMovies([newSaveMovies, ...saveMovies]);
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  console.log(saveMovies);
 
   function removeMovies(moviesId) {
     mainApi
@@ -305,7 +194,7 @@ function App() {
       })
       .finally(() => {
         setPreloaderActive(false);
-        history.push('/');
+        history.push('/movies');
         window.location.reload()
       })
       .catch((err) => {
@@ -313,12 +202,105 @@ function App() {
       });
   }
 
+  function editProfile(name, email) {
+    mainApi
+      .editUser(name, email)
+      .then((user) => {
+        setCurrentUser(user);
+        history.push('/movies');
+        window.location.reload();
+      })
+
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <LoggedInContext.Provider value={loggedIn}>
         <PreloaderActiveContext.Provider value={preloaderActive}>
           <Switch>
-            {markUp}
+            <div className="page">
+              <Route exact path="/">
+                <Header
+                  openNavTab={openNavTab}
+                  sizeWindow={sizeWindow}
+                />
+                <Main
+                  promo={Promo}
+                  aboutProject={AboutProject}
+                  techs={Techs}
+                  aboutMe={AboutMe}
+                  portfolio={Portfolio}
+                />
+                <Footer />
+              </Route>
+              {loggedIn ? <Route path="/movies">
+                <Header
+                  openNavTab={openNavTab}
+                  sizeWindow={sizeWindow}
+                />
+                <Movies
+                  searchForm={SearchForm}
+                  moviesCardList={MoviesCardList}
+                  movies={movies}
+                  saveMovies={saveMovies}
+                  saveMovie={saveMovie}
+                  removeMovies={removeMovies}
+                  Preloader={Preloader}
+                  setPreloaderActive={setPreloaderActive}
+                  sizeWindow={sizeWindow}
+                />
+                <Footer />
+              </Route> : <Redirect to="/" />}
+              {loggedIn ? <Route path="/saved-movies">
+                <Header
+                  openNavTab={openNavTab}
+                  sizeWindow={sizeWindow}
+                />
+                <SavedMovies
+                  searchForm={SearchForm}
+                  moviesCardList={MoviesCardList}
+                  movies={saveMovies}
+                  saveMovie={saveMovie}
+                  removeMovies={removeMovies}
+                  Preloader={Preloader}
+                  setPreloaderActive={setPreloaderActive}
+                  sizeWindow={sizeWindow}
+                />
+                <Footer />
+              </Route> : <Redirect to="/" />}
+              {loggedIn ? <Route path="/profile">
+                <Header
+                  openNavTab={openNavTab}
+                  sizeWindow={sizeWindow}
+                />
+                <Profile
+                  Preloader={Preloader}
+                  setPreloaderActive={setPreloaderActive}
+                  editProfile={editProfile}
+                />
+              </Route> : <Redirect to="/" />}
+              <Route path="/signup">
+                <Register
+                  Preloader={Preloader}
+                  setPreloaderActive={setPreloaderActive}
+                  onRegister={onRegister}
+                />
+              </Route>
+              <Route path="/signin">
+                <Login
+                  Preloader={Preloader}
+                  setPreloaderActive={setPreloaderActive}
+                  onLogin={onLogin}
+                />
+              </Route>
+              <Route path="/404">
+                <NotFound />
+              </Route>
+              <Navigation
+                open={openNavigation}
+                closeNavTab={closeNavTab}
+              />
+            </div>
           </Switch>
         </PreloaderActiveContext.Provider>
       </LoggedInContext.Provider >

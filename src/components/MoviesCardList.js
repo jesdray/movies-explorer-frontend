@@ -55,6 +55,7 @@ function MoviesCardList(props) {
                               <MoviesCard
                                    key={item.id}
                                    movies={item}
+                                   saveMovies={props.saveMovies}
                                    saveMovie={props.saveMovie}
                                    removeMovies={props.removeMovies}
                                    savedMovies={props.savedMovies}
@@ -62,7 +63,7 @@ function MoviesCardList(props) {
                          ))}
                </div>
                <div className="movies__box">
-                    <button className="movies__button" onClick={getMoreMovies}>Ещё</button>
+                    <button className={idMovies >= 100 ? "movies__button movies__button_disabled" : "movies__button"} onClick={getMoreMovies} disabled={idMovies >= 100 ? true : false}>Ещё</button>
                </div>
           </div>
      );
