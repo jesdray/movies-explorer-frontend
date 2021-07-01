@@ -28,7 +28,7 @@ import { PreloaderActiveContext } from "../contexts/PreloaderActiveContext";
 
 function App() {
   const history = useHistory()
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
   const [openNavigation, setOpenNavigation] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [saveMovies, setSaveMovies] = React.useState([]);
@@ -36,7 +36,133 @@ function App() {
   const [preloaderActive, setPreloaderActive] = React.useState(false);
   const [sizeWindow, setSizeWindow] = React.useState(window.innerWidth)
 
-  window.addEventListener("resize", resizeThrottler, false)
+  const markUpLoggedIn = (
+    <div className="page">
+      <Route exact path="/">
+        <Header
+          openNavTab={openNavTab}
+          sizeWindow={sizeWindow}
+        />
+        <Main
+          promo={Promo}
+          aboutProject={AboutProject}
+          techs={Techs}
+          aboutMe={AboutMe}
+          portfolio={Portfolio}
+        />
+        <Footer />
+      </Route>
+      <Route path="/movies">
+        <Header
+          openNavTab={openNavTab}
+          sizeWindow={sizeWindow}
+        />
+        <Movies
+          searchForm={SearchForm}
+          moviesCardList={MoviesCardList}
+          movies={movies}
+          saveMovie={saveMovie}
+          removeMovies={removeMovies}
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          sizeWindow={sizeWindow}
+        />
+        <Footer />
+      </Route>
+      <Route path="/saved-movies">
+        <Header
+          openNavTab={openNavTab}
+          sizeWindow={sizeWindow}
+        />
+        <SavedMovies
+          searchForm={SearchForm}
+          moviesCardList={MoviesCardList}
+          movies={saveMovies}
+          saveMovie={saveMovie}
+          removeMovies={removeMovies}
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          sizeWindow={sizeWindow}
+        />
+        <Footer />
+      </Route>
+      <Route path="/profile">
+        <Header
+          openNavTab={openNavTab}
+          sizeWindow={sizeWindow}
+        />
+        <Profile
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+        />
+      </Route>
+      <Route path="/signup">
+        <Register
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          onRegister={onRegister}
+        />
+      </Route>
+      <Route path="/signin">
+        <Login
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          onLogin={onLogin}
+        />
+      </Route>
+      <Route path="/404">
+        <NotFound />
+      </Route>
+      <Navigation
+        open={openNavigation}
+        closeNavTab={closeNavTab}
+      />
+    </div>
+  )
+
+  const markUpNoLogedIn = (
+    <div className="page">
+      <Route exact path="/">
+        <Header
+          openNavTab={openNavTab}
+          sizeWindow={sizeWindow}
+        />
+        <Main
+          promo={Promo}
+          aboutProject={AboutProject}
+          techs={Techs}
+          aboutMe={AboutMe}
+          portfolio={Portfolio}
+        />
+        <Footer />
+      </Route>
+      <Route path="/signup">
+        <Register
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          onRegister={onRegister}
+        />
+      </Route>
+      <Route path="/signin">
+        <Login
+          Preloader={Preloader}
+          setPreloaderActive={setPreloaderActive}
+          onLogin={onLogin}
+        />
+      </Route>
+      <Route path="/404">
+        <NotFound />
+      </Route>
+      <Navigation
+        open={openNavigation}
+        closeNavTab={closeNavTab}
+      />
+    </div>
+  )
+
+  const markUp = loggedIn ? markUpLoggedIn : markUpNoLogedIn
+
+    window.addEventListener("resize", resizeThrottler, false)
 
   let resizeTimeout = "";
   function resizeThrottler(size) {
@@ -192,87 +318,7 @@ function App() {
       <LoggedInContext.Provider value={loggedIn}>
         <PreloaderActiveContext.Provider value={preloaderActive}>
           <Switch>
-            <div className="page">
-              <Route exact path="/">
-                <Header
-                  openNavTab={openNavTab}
-                  sizeWindow={sizeWindow}
-                />
-                <Main
-                  promo={Promo}
-                  aboutProject={AboutProject}
-                  techs={Techs}
-                  aboutMe={AboutMe}
-                  portfolio={Portfolio}
-                />
-                <Footer />
-              </Route>
-              <Route path="/movies">
-                <Header
-                  openNavTab={openNavTab}
-                  sizeWindow={sizeWindow}
-                />
-                <Movies
-                  searchForm={SearchForm}
-                  moviesCardList={MoviesCardList}
-                  movies={movies}
-                  saveMovie={saveMovie}
-                  removeMovies={removeMovies}
-                  Preloader={Preloader}
-                  setPreloaderActive={setPreloaderActive}
-                  sizeWindow={sizeWindow}
-                />
-                <Footer />
-              </Route>
-              <Route path="/saved-movies">
-                <Header
-                  openNavTab={openNavTab}
-                  sizeWindow={sizeWindow}
-                />
-                <SavedMovies
-                  searchForm={SearchForm}
-                  moviesCardList={MoviesCardList}
-                  movies={saveMovies}
-                  saveMovie={saveMovie}
-                  removeMovies={removeMovies}
-                  Preloader={Preloader}
-                  setPreloaderActive={setPreloaderActive}
-                  sizeWindow={sizeWindow}
-                />
-                <Footer />
-              </Route>
-              <Route path="/profile">
-                <Header
-                  openNavTab={openNavTab}
-                  sizeWindow={sizeWindow}
-                />
-                <Profile
-                  Preloader={Preloader}
-                  setPreloaderActive={setPreloaderActive}
-                />
-              </Route>
-              <Route path="/signup">
-                <Register
-                  Preloader={Preloader}
-                  setPreloaderActive={setPreloaderActive}
-                  onRegister={onRegister}
-                />
-              </Route>
-              <Route path="/signin">
-                <Login
-                  Preloader={Preloader}
-                  setPreloaderActive={setPreloaderActive}
-                  onLogin={onLogin}
-                />
-              </Route>
-              <Route path="/404">
-                <NotFound />
-              </Route>
-              <Navigation
-                open={openNavigation}
-                closeNavTab={closeNavTab}
-              />
-            </div>
+            {markUp}
           </Switch>
         </PreloaderActiveContext.Provider>
       </LoggedInContext.Provider >
