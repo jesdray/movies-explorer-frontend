@@ -40,12 +40,12 @@ function Profile(props) {
             <form className="profile__form">
                 <div className="profile__box">
                     <p className="profile__input-name">Имя</p>
-                    <input name="name" type="text" className="profile__input profile__input_disabled" value={name} readonly={!editing ? true : false} onChange={setInput} required />
+                    <input name="name" type="text" className="profile__input profile__input_disabled" value={name} readOnly={!editing ? true : false} onChange={setInput} required />
                     <span className="error__span"></span>
                 </div>
                 <div className="profile__box">
                     <p className="profile__input-name">E-mail</p>
-                    <input name="email" type="text" className="profile__input profile__input_disabled" value={email} readonly={!editing ? true : false} onChange={setInput} required />
+                    <input name="email" type="text" className="profile__input profile__input_disabled" value={email} readOnly={!editing ? true : false} onChange={setInput} required />
                     <span className="error__span"></span>
                 </div>
                 <button type="button" className="profile__button" onClick={editing ? handleSubmit : editInf}>Редактировать</button>

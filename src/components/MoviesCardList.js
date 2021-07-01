@@ -10,6 +10,8 @@ function MoviesCardList(props) {
           return item.id <= idMovies
      })
 
+     console.log(props.movies);
+
      function getMoreMovies() {
           if (widthWindow < 1280 & widthWindow > 940) {
                setIdMovies(idMovies + 3)
@@ -35,7 +37,7 @@ function MoviesCardList(props) {
                          {props.movies !== undefined &&
                               props.movies.map((item) => (
                                    <MoviesCard
-                                        key={item.id}
+                                        key={item.movieId}
                                         movies={item}
                                         saveMovie={props.saveMovie}
                                         removeMovies={props.removeMovies}
@@ -53,7 +55,7 @@ function MoviesCardList(props) {
                     {props.movies !== undefined &&
                          movies.map((item) => (
                               <MoviesCard
-                                   key={item.id}
+                                   key={item.movieId}
                                    movies={item}
                                    saveMovies={props.saveMovies}
                                    saveMovie={props.saveMovie}

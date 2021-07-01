@@ -122,14 +122,10 @@ function App() {
     }
   }, []);
 
-  console.log(movies);
-  console.log(saveMovies);
-
   function saveMovie(data, image, thumbnail) {
     mainApi
       .createMovies(data, image, thumbnail)
       .then((movie) => {
-        console.log(movie);
         const newSaveMovies = {
           id: movie.data.id,
           country: movie.data.country,
@@ -155,7 +151,9 @@ function App() {
     mainApi
       .removeMovies(moviesId)
       .then(() => {
-        setSaveMovies(saveMovies.filter((m) => m.id !== moviesId))
+        setSaveMovies(saveMovies.filter((m) => {
+          return m.movieId !== moviesId
+        }))
       })
       .catch((err) => {
         console.log(err);

@@ -22,7 +22,6 @@ function MoviesCard(props) {
     }
 
     function onCardremove() {
-        setIsLiked(!isLiked);
         props.removeMovies(props.movies.movieId);
     }
 
@@ -32,7 +31,7 @@ function MoviesCard(props) {
                 <a href={props.movies.trailer} className="card__link" rel="noreferrer" target="_blank"><img src={props.movies.image} alt="фрагмент из фильма" className="card__image"></img></a>
                 <div className="card__box">
                     <h2 className="card__name">{props.movies.nameRU}</h2>
-                    <button className="card__plus" onClick={onCardremove}></button>
+                    <button type="button" className="card__plus" onClick={onCardremove}></button>
                 </div>
                 <p className="card__time">{hour}ч{minutes}м</p>
             </article>
