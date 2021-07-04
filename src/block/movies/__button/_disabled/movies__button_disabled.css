@@ -1,4 +1,4 @@
-.movies__button_disabled {
-    opacity: 0.2;
+.movies__button_disabled{
+    opacity: 0.8;
     cursor: default;
 }

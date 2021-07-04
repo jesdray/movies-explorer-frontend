@@ -1,4 +1,5 @@
 import React from "react";
+import image from "../images/promo_image.svg";
 
 function Promo(props) {
 

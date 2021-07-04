@@ -1,9 +1,8 @@
-// https://movies-b.students.nomoredomains.club
-// http://localhost:3005
+// http://localhost:3005/
 
 class MainApi {
     constructor(token) {
-        this._baseUrl = "http://localhost:3005/";
+        this._baseUrl = "https://movies-b.students.nomoredomains.club/";
         this._headers = {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -112,4 +111,4 @@ const token = localStorage.getItem('token');
 
 const mainApi = new MainApi(token);
 
-export { mainApi, MainApi }; 
+export { mainApi, MainApi };

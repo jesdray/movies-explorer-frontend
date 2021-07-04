@@ -1,19 +1,20 @@
 import React from "react";
+import { MoviesContext } from "../contexts/MoviesContext"
 
 function Movies(props) {
-    const [movies, setMovies] = React.useState(props.movies)
+    const movies = React.useContext(MoviesContext);
 
     return (
         <>
             <props.searchForm
-                movies={props.movies}
-                setMovies={setMovies}
+                movies={movies}
+                setMovies={props.setMovies}
+                allMovies={props.allMovies}
+                setPreloaderActive={props.setPreloaderActive}
             />
             <props.Preloader />
             <props.moviesCardList
                 savedMovies={false}
-                movies={movies}
-                saveMovies={props.saveMovies}
                 saveMovie={props.saveMovie}
                 removeMovies={props.removeMovies}
                 setPreloaderActive={props.setPreloaderActive}

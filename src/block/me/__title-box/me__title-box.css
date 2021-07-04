@@ -1,5 +1,6 @@
 .me__title-box {
     display: flex;
+    justify-content: start;
     align-items: flex-start;
     border-bottom: 1px solid #000;
     width: 100%;

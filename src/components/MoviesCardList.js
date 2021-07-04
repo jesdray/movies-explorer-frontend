@@ -1,27 +1,26 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import MoviesCard from "./MoviesCard"
+import { MoviesContext } from "../contexts/MoviesContext"
+import { SaveMoviesContext } from "../contexts/SaveMoviesContext"
 
 function MoviesCardList(props) {
-     const path = useHistory().location.pathname;
-     const widthWindow = window.innerWidth;
-     const [idMovies, setIdMovies] = React.useState((widthWindow < 601 ? 5 : 8) + (widthWindow > 940 && 4))
-     const movies = props.movies.filter(function (item) {
-          return item.id <= idMovies
-     })
-
-     console.log(props.movies);
+     const movies = React.useContext(MoviesContext);
+     const saveMovies = React.useContext(SaveMoviesContext);
+     const [idMovies, setIdMovies] = React.useState((props.sizeWindow < 601 ? 5 : 8) + (props.sizeWindow > 940 && 4));
+     const renderMovies = movies.filter(function (item, i) {
+          return i < idMovies
+     });
 
      function getMoreMovies() {
-          if (widthWindow < 1280 & widthWindow > 940) {
+          if (props.sizeWindow < 1280 & props.sizeWindow > 940) {
                setIdMovies(idMovies + 3)
                return
           }
-          if (widthWindow < 941 & widthWindow > 600) {
+          if (props.sizeWindow < 941 & props.sizeWindow > 600) {
                setIdMovies(idMovies + 2)
                return
           }
-          if (widthWindow < 601) {
+          if (props.sizeWindow < 601) {
                setIdMovies(idMovies + 1)
                return
           } else {
@@ -30,43 +29,49 @@ function MoviesCardList(props) {
           }
      }
 
-     if (path === "/saved-movies") {
-          return (
-               <div className="movies">
-                    <div className="movies__container">
-                         {props.movies !== undefined &&
-                              props.movies.map((item) => (
-                                   <MoviesCard
-                                        key={item.movieId}
-                                        movies={item}
-                                        saveMovie={props.saveMovie}
-                                        removeMovies={props.removeMovies}
-                                        savedMovies={props.savedMovies}
-                                   />
-                              ))
-                         }
-                    </div>
-               </div>
-          )
+     function checkLike(item) {
+          const like = saveMovies.map((m) => {
+               if (m.movieId === item.movieId) {
+                    return m._id
+               }
+               return;
+          })
+
+          return like.find((item => item !== undefined))
      }
+
      return (
           <div className="movies">
                <div className="movies__container">
-                    {props.movies !== undefined &&
-                         movies.map((item) => (
+                    {props.savedMovies ?
+                         saveMovies.map((item) => (
                               <MoviesCard
                                    key={item.movieId}
+                                   _id={item._id}
                                    movies={item}
-                                   saveMovies={props.saveMovies}
+                                   removeMovies={props.removeMovies}
+                                   saveMovie={props.saveMovie}
+                                   savedMovies={props.savedMovies}
+                                   setPreloaderActive={props.setPreloaderActive}
+                              />
+                         )) : renderMovies.map((item) => (
+                              <MoviesCard
+                                   key={item.movieId}
+                                   _id={checkLike(item)}
+                                   movies={item}
                                    saveMovie={props.saveMovie}
                                    removeMovies={props.removeMovies}
                                    savedMovies={props.savedMovies}
+                                   setPreloaderActive={props.setPreloaderActive}
                               />
-                         ))}
+                         ))
+                    }
                </div>
-               <div className="movies__box">
-                    <button className={idMovies >= 100 ? "movies__button movies__button_disabled" : "movies__button"} onClick={getMoreMovies} disabled={idMovies >= 100 ? true : false}>Ещё</button>
-               </div>
+               {!props.savedMovies &&
+                    <div className="movies__box">
+                         <button className={idMovies >= renderMovies.length ? "movies__button movies__button_disabled" : "movies__button"} onClick={getMoreMovies} disabled={idMovies >= renderMovies.length ? true : false}>Ещё</button>
+                    </div>
+               }
           </div>
      );
 }
