@@ -6,10 +6,6 @@ function Login(props) {
     const email = useFormWithValidation("", { isEmpty: true, isEmail: true })
     const password = useFormWithValidation("", { isEmpty: true, minLength: 4 })
 
-    const [errorEmail, setErrorEmail] = React.useState("");
-    const [errorPassword, setErrorPassword] = React.useState("");
-
-
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -19,8 +15,6 @@ function Login(props) {
         }
     }
 
-    console.log(!email.isValid, !password.isValid);
-
     return (
         <div className="register">
             <form className="form" onSubmit={handleSubmit} noValidate={true}>
@@ -29,14 +23,14 @@ function Login(props) {
                     <h1 className="form__title">Рады видеть!</h1>
                     <p className="form__input-name">E-mail</p>
                     <input type="text" className="form__input" required name="email" value={email.value} onChange={(e) => email.onChange(e)} onBlur={(e) => email.onBlur(e)}></input>
-                    <span className="form__span">{email.errorMessage}</span>
+                    <span className="form__span"></span>
                     <p className="form__input-name">Пароль</p>
                     <input type="password" className="form__input" required name="password" value={password.value} onChange={(e) => password.onChange(e)} onBlur={(e) => password.onBlur(e)}></input>
-                    <span className="form__span">{password.errorMessage}</span>
+                    <span className="form__span"></span>
                 </div>
                 <props.Preloader />
                 <div className="form__box">
-                    <button type="submit" className={(email.isValid && password.isValid) ? "form__button" : "form__button form__button_disabled"}
+                    <button type="submit" className={(!email.isValid && !password.isValid) ? "form__button" : "form__button form__button_disabled"}
                         >
                         Войти
                     </button>

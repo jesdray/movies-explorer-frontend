@@ -16,23 +16,23 @@ function Register(props) {
 
     return (
         <div className="login">
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit} noValidate={true}>
                 <div className="form__box">
                     <Link className="logo logo__form" to="/"></Link>
                     <h1 className="form__title">Добро пожаловать!</h1>
                     <p className="form__input-name">Имя</p>
                     <input type="text" className="form__input" required value={name.value} name="name" onBlur={e => name.onBlur(e)} onChange={e => name.onChange(e)}></input>
-                    <span className="form__span">{name.errorMessage}</span>
+                    <span className="form__span"></span>
                     <p className="form__input-name">E-mail</p>
                     <input type="text" className="form__input" required value={email.value} name="email" onBlur={e => email.onBlur(e)} onChange={e => email.onChange(e)}></input>
-                    <span className="form__span">{email.errorMessage}</span>
+                    <span className="form__span"></span>
                     <p className="form__input-name">Пароль</p>
                     <input type="password" className="form__input" required value={password.value} name="password" onBlur={e => password.onBlur(e)} onChange={e => password.onChange(e)}></input>
                     <span className="form__span">{password.errorMessage}</span>
                 </div>
                 <props.Preloader />
                 <div className="form__box">
-                    <button type="submit" className={(name.isValid && email.isValid && password.isValid) ? "form__button" : "form__button form__button_disabled"}
+                    <button type="submit" className={(!name.isValid && !email.isValid && !password.isValid) ? "form__button" : "form__button form__button_disabled"}
                         >
                         Зарегистрироваться
                     </button>
