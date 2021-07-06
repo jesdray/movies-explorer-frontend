@@ -10,7 +10,6 @@ function SearchForm(props) {
     function searchShortMovies() {
         props.setPreloaderActive(true)
         if (!check) {
-            console.log(movies);
             let searchMovie = props.movies.filter((movie) => {
                 return movie.duration <= 40;
             })

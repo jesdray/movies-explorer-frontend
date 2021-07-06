@@ -22,16 +22,16 @@ function Login(props) {
                     <Link className="logo logo__form" to="/"></Link>
                     <h1 className="form__title">Рады видеть!</h1>
                     <p className="form__input-name">E-mail</p>
-                    <input type="text" className="form__input" required name="email" value={email.value} onChange={(e) => email.onChange(e)} onBlur={(e) => email.onBlur(e)}></input>
-                    <span className="form__span"></span>
+                    <input type="text" className="form__input" required name="email" value={email.value} onChange={(e) => email.onChange(e)} onFocus={(e) => email.onBlur(e)} onBlur={(e) => email.onBlur(e)}></input>
+                    <span className="form__span">{email.errorMessage}</span>
                     <p className="form__input-name">Пароль</p>
-                    <input type="password" className="form__input" required name="password" value={password.value} onChange={(e) => password.onChange(e)} onBlur={(e) => password.onBlur(e)}></input>
-                    <span className="form__span"></span>
+                    <input type="password" className="form__input" required name="password" value={password.value} onChange={(e) => password.onChange(e)} onFocus={(e) => password.onBlur(e)} onBlur={(e) => password.onBlur(e)}></input>
+                    <span className="form__span">{password.errorMessage}</span>
                 </div>
                 <props.Preloader />
                 <div className="form__box">
-                    <button type="submit" className={(!email.isValid && !password.isValid) ? "form__button" : "form__button form__button_disabled"}
-                        >
+                    <button type="submit" className={!email.isValid && !password.isValid ? "form__button" : "form__button form__button_disabled"}
+                        disabled={!email.isValid && !password.isValid ? true : false}  >
                         Войти
                     </button>
                     <Link className="form__link" to="/signup">Ещё не зарегистрированы?<span className="form__span_link">Регистрация</span></Link>

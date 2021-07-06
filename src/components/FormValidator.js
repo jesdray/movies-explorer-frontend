@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable default-case */
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { flushSync } from "react-dom";
 
@@ -12,14 +15,16 @@ export function useFormWithValidation(initialValue, validations) {
     const [errorMessage, setErrorMessage] = React.useState("")
     const [isValid, setIsValid] = React.useState(false);
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const a = 2;
 
     const onChange = (e) => {
         setValue(e.target.value)
     }
-
     const onBlur = (e) => {
         setIsDirty(true)
     }
+
+    console.log(isEmpty);
 
     const check = React.useEffect(() => {
         for (const validation in validations) {
@@ -29,26 +34,26 @@ export function useFormWithValidation(initialValue, validations) {
                     minLength ? setErrorMessage(`Минимальное количество символов: ${validations[validation] + 1}`) : setErrorMessage("")
                     break;
                 case "isEmpty":
-                    value ? setIsEmpty(false) : setIsEmpty(true)
-                    isEmpty ? setErrorMessage("Поле не может быть пустым") : setErrorMessage("")
+                    value === "" ? setIsEmpty(true) : setIsEmpty(false)
+                    isEmpty ? setErrorMessage("Поле не может быть пустым") : a = 1
                     break;
                 case "isEmail":
                     const test = re.test(String(value).toLowerCase())
                     test ? setIsEmail(false) : setIsEmail(true)
-                    isEmail ? setErrorMessage("Введите email") : setErrorMessage("")
+                    isEmail && value !== "" ? setErrorMessage("Введите email") : setErrorMessage("")
                     break;
             }
         }
     }, [value])
 
     React.useEffect(() => {
-        if (isDirty || isEmail || isEmpty || minLength) {
+        if (isEmail || isEmpty || minLength) {
             setIsValid(false);
         } else {
             setIsValid(true);
         }
 
-    }, [isDirty, isEmail, isEmpty, minLength, errorMessage])
+    }, [isEmail, isEmpty, minLength])
 
     return {
         value,

@@ -171,11 +171,10 @@ function App() {
     mainApi
       .signUp(name, email, password)
       .then(() => {
+        history.push('/signin')
       })
       .finally(() => {
         setPreloaderActive(false);
-        history.push('/signin')
-        window.location.reload()
       })
       .catch((err) => {
         console.log(err);
@@ -188,11 +187,10 @@ function App() {
       .then((data) => {
         localStorage.setItem('token', data.token);
         setLoggedIn(true);
+        history.push('/')
       })
       .finally(() => {
         setPreloaderActive(false);
-        history.push('/');
-        window.location.reload()
       })
       .catch((err) => {
         console.log(err);
