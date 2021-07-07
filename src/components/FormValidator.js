@@ -6,16 +6,17 @@ import { flushSync } from "react-dom";
 
 // (email.isDirty && email.isEmpty) && "Поле не может быть пустым"
 
-export function useFormWithValidation(initialValue, validations) {
-    const [value, setValue] = React.useState(initialValue);
+export function useFormWithValidation(inputValue, validations) {
+    const [value, setValue] = React.useState(inputValue);
+    const initialValue = inputValue
     const [isDirty, setIsDirty] = React.useState(false)
-    const [isEmpty, setIsEmpty] = React.useState(false)
-    const [minLength, setMinLength] = React.useState(false)
-    const [isEmail, setIsEmail] = React.useState(false)
+    const [isEmpty, setIsEmpty] = React.useState(true)
+    const [minLength, setMinLength] = React.useState(true)
+    const [isEmail, setIsEmail] = React.useState(true)
+    const [isChanged, setIsChanged] = React.useState(true);
     const [errorMessage, setErrorMessage] = React.useState("")
     const [isValid, setIsValid] = React.useState(false);
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const a = 2;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/;
 
     const onChange = (e) => {
         setValue(e.target.value)
@@ -24,36 +25,38 @@ export function useFormWithValidation(initialValue, validations) {
         setIsDirty(true)
     }
 
-    console.log(isEmpty);
-
     const check = React.useEffect(() => {
         for (const validation in validations) {
             switch (validation) {
                 case "minLength":
-                    value.length < validations[validation] ? setMinLength(true) : setMinLength(false)
-                    minLength ? setErrorMessage(`Минимальное количество символов: ${validations[validation] + 1}`) : setErrorMessage("")
+                    value.length < validations[validation] ? setMinLength(false) : setMinLength(true)
+                    if (value !== "" && !minLength) { setErrorMessage(`Минимальное количество символов: ${validations[validation]}`) }
                     break;
                 case "isEmpty":
                     value === "" ? setIsEmpty(true) : setIsEmpty(false)
-                    isEmpty ? setErrorMessage("Поле не может быть пустым") : a = 1
+                    if (value === "" && isDirty) { setErrorMessage("Поле не может быть пустым") }
                     break;
                 case "isEmail":
-                    const test = re.test(String(value).toLowerCase())
-                    test ? setIsEmail(false) : setIsEmail(true)
-                    isEmail && value !== "" ? setErrorMessage("Введите email") : setErrorMessage("")
+                    re.test(String(value).toLowerCase()) ? setIsEmail(true) : setIsEmail(false)
+                    if (value !== "" && !isEmail) { setErrorMessage("Введите email") }
+                    break;
+                case "isChanged":
+                    value !== initialValue ? setIsChanged(true) : setIsChanged(false)
+                    if (value === initialValue) { setErrorMessage("Значение поля должно быть измененно") }
                     break;
             }
         }
     }, [value])
 
     React.useEffect(() => {
-        if (isEmail || isEmpty || minLength) {
-            setIsValid(false);
-        } else {
-            setIsValid(true);
-        }
+        if (isEmail && !isEmpty && minLength && isChanged && value !== "") {
+            setIsValid(true)
+            setErrorMessage("")
+        } else (
+            setIsValid(false)
+        )
 
-    }, [isEmail, isEmpty, minLength])
+    }, [isEmail, isEmpty, minLength, isChanged])
 
     return {
         value,
