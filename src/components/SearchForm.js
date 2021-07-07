@@ -51,7 +51,7 @@ function SearchForm(props) {
                 </div>
                 <div className="search__container">
                     <input className="search__checkbox" type="checkbox" id="short-film" name="short film" value="true" checked={check} onChange={searchShortMovies} />
-                    <label for="short-film" ><div className="search__circle" /></label>
+                    <label htmlFor="short-film" ><div className="search__circle" /></label>
                     <p className="search__checkbox-name">Короткометражки</p>
                 </div>
             </form>

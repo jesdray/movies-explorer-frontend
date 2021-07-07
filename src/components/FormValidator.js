@@ -16,7 +16,7 @@ export function useFormWithValidation(inputValue, validations) {
     const [isChanged, setIsChanged] = React.useState(true);
     const [errorMessage, setErrorMessage] = React.useState("")
     const [isValid, setIsValid] = React.useState(false);
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const onChange = (e) => {
         setValue(e.target.value)
@@ -33,7 +33,7 @@ export function useFormWithValidation(inputValue, validations) {
                     if (value !== "" && !minLength) { setErrorMessage(`Минимальное количество символов: ${validations[validation]}`) }
                     break;
                 case "isEmpty":
-                    value === "" ? setIsEmpty(true) : setIsEmpty(false)
+                    value === "" ? setIsEmpty(false) : setIsEmpty(true)
                     if (value === "" && isDirty) { setErrorMessage("Поле не может быть пустым") }
                     break;
                 case "isEmail":
@@ -41,7 +41,7 @@ export function useFormWithValidation(inputValue, validations) {
                     if (value !== "" && !isEmail) { setErrorMessage("Введите email") }
                     break;
                 case "isChanged":
-                    value !== initialValue ? setIsChanged(true) : setIsChanged(false)
+                    value === initialValue ? setIsChanged(false) : setIsChanged(true)
                     if (value === initialValue) { setErrorMessage("Значение поля должно быть измененно") }
                     break;
             }
@@ -49,7 +49,7 @@ export function useFormWithValidation(inputValue, validations) {
     }, [value])
 
     React.useEffect(() => {
-        if (isEmail && !isEmpty && minLength && isChanged && value !== "") {
+        if (isEmail && isEmpty && minLength && isChanged && value !== "") {
             setIsValid(true)
             setErrorMessage("")
         } else (
@@ -68,6 +68,7 @@ export function useFormWithValidation(inputValue, validations) {
         errorMessage,
         isValid,
         isEmail,
+        isChanged,
         ...check
     }
 }

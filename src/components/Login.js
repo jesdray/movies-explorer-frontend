@@ -32,7 +32,7 @@ function Login(props) {
                 <props.Preloader />
                 <div className="form__box">
                     <button type="submit" className={formValid ? "form__button" : "form__button form__button_disabled"}
-                        disabled={formValid}  >
+                        disabled={formValid ? false : true}  >
                         Войти
                     </button>
                     <Link className="form__link" to="/signup">Ещё не зарегистрированы?<span className="form__span_link">Регистрация</span></Link>

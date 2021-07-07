@@ -208,6 +208,7 @@ function App() {
       .then((newUser) => setCurrentUser(newUser))
       .finally(() => {
         setPreloaderActive(false);
+        history.push('/movies')
       })
       .catch((err) => {
         console.log(err);

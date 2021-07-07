@@ -11,7 +11,7 @@ function Register(props) {
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (name.isValid && email.isValid && password.isValid) {
+        if (formValid) {
             props.setPreloaderActive(true);
             props.onRegister(name.value, email.value, password.value);
         }
@@ -36,7 +36,7 @@ function Register(props) {
                 <props.Preloader />
                 <div className="form__box">
                     <button type="submit" className={formValid ? "form__button" : "form__button form__button_disabled"}
-                        disabled={formValid} >
+                        disabled={formValid ? false : true} >
                         Зарегистрироваться
                     </button>
                     <Link className="form__link" to="/signin">Уже зарегистрированы?<span className="form__span_link">Войти</span></Link>
