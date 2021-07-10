@@ -33,12 +33,15 @@ function MoviesCardList(props) {
      }
 
      function checkLike(item) {
-          const like = saveMovies.map((m) => {
-               if (m.movieId === item.movieId) {
-                    return m._id
-               }
-               return;
-          })
+          let like = [undefined]
+          if (saveMovies !== null) {
+               like = saveMovies.map((m) => {
+                    if (m.movieId === item.movieId) {
+                         return m._id
+                    }
+                    return;
+               })
+          }
 
           return like.find((item => item !== undefined))
      }

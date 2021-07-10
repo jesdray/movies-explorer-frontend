@@ -129,9 +129,10 @@ function App() {
   }
 
   React.useEffect(() => {
+    apiGetMovies()
     const log = localStorage.getItem('loggedIn')
     tokenCheck();
-    if (log !== "false") {
+    if (log === "true") {
       setLoggedIn(true)
     }
     if (localStorage.getItem('token')) {
@@ -141,7 +142,7 @@ function App() {
 
         setCurrentUser(user)
       }
-      apiGetMovies();
+      apiGetMovies()
       if (localStorage.getItem('movies')) {
         const movie = JSON.parse(localStorage.getItem('movies'));
 
@@ -204,9 +205,11 @@ function App() {
         mainApi
           .signIn(email, password)
           .then((data) => {
+            apiGetMovies();
             localStorage.setItem('token', data.token);
             localStorage.setItem('loggedIn', true);
             setLoggedIn(true);
+            history.push('/')
             history.push('/movies')
           })
       })
@@ -222,11 +225,12 @@ function App() {
     mainApi
       .signIn(email, password)
       .then((data) => {
+        apiGetMovies();
         localStorage.setItem('token', data.token);
         localStorage.setItem('loggedIn', true);
         setLoggedIn(true);
+        history.push('/')
         history.push('/movies')
-        window.location.reload()
       })
       .finally(() => {
         setPreloaderActive(false);
@@ -244,6 +248,8 @@ function App() {
     localStorage.removeItem('searchMovies');
     localStorage.removeItem('shortMovies');
     setLoggedIn(false)
+    history.push('/')
+    window.location.reload()
   }
 
   function editUser(name, email) {
