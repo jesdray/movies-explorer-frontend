@@ -3,7 +3,7 @@
 
 class MainApi {
     constructor(token) {
-        this._baseUrl = "https://movies-b.students.nomoredomains.club/";
+        this._baseUrl = "http://localhost:3005/";
         this._headers = {
             authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

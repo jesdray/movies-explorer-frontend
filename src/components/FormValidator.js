@@ -49,9 +49,11 @@ export function useFormWithValidation(inputValue, validations) {
     }, [value])
 
     React.useEffect(() => {
-        if (isEmail && isEmpty && minLength && isChanged && value !== "") {
+        if (isEmail && isEmpty && minLength && value !== "") {
             setIsValid(true)
-            setErrorMessage("")
+            if (isEmail && isEmpty && minLength && isChanged && value !== "") {
+                setErrorMessage("")
+            }
         } else (
             setIsValid(false)
         )

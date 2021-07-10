@@ -9,9 +9,11 @@ function SavedMovies(props) {
         <>
             <props.searchForm
                 movies={saveMovies}
+                savedMovies={true}
                 setMovies={props.setMovies}
                 allMovies={props.allMovies}
                 setPreloaderActive={props.setPreloaderActive}
+                setSearchResult={props.setSearchResult}
             />
             <props.Preloader />
             <props.moviesCardList
@@ -19,6 +21,7 @@ function SavedMovies(props) {
                 removeMovies={props.removeMovies}
                 setPreloaderActive={props.setPreloaderActive}
                 sizeWindow={props.sizeWindow}
+                searchResult={props.searchResult}
             />
         </>
     );

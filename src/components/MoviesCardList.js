@@ -1,15 +1,18 @@
 import React from "react";
 import MoviesCard from "./MoviesCard"
-import { MoviesContext } from "../contexts/MoviesContext"
-import { SaveMoviesContext } from "../contexts/SaveMoviesContext"
 
 function MoviesCardList(props) {
-     const movies = React.useContext(MoviesContext);
-     const saveMovies = React.useContext(SaveMoviesContext);
+     const movies = JSON.parse(localStorage.getItem('movies'))
+     let saveMovies = JSON.parse(localStorage.getItem('saveMovies'))
+     const movi = props.savedMovies ? JSON.parse(localStorage.getItem('saveSearchMovies')) : JSON.parse(localStorage.getItem('searchMovies'));
+     saveMovies = localStorage.getItem('saveSearchMovies') !== null ? JSON.parse(localStorage.getItem('saveSearchMovies')) : saveMovies;
      const [idMovies, setIdMovies] = React.useState((props.sizeWindow < 601 ? 5 : 8) + (props.sizeWindow > 940 && 4));
-     const renderMovies = movies.filter(function (item, i) {
-          return i < idMovies
-     });
+     const renderMovies = movi !== null ?
+          movi.filter(function (item, i) {
+               return i < idMovies
+          }) : movies.filter(function (item, i) {
+               return i < idMovies
+          });
 
      function getMoreMovies() {
           if (props.sizeWindow < 1280 & props.sizeWindow > 940) {
@@ -42,6 +45,7 @@ function MoviesCardList(props) {
 
      return (
           <div className="movies">
+               <h2 className={props.searchResult ? "movies__result" : "movies__result movies__result_disabled"}>Ничего не найдено</h2>
                <div className="movies__container">
                     {props.savedMovies ?
                          saveMovies.map((item) => (

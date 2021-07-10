@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import '../index.css';
 import Header from "./Header";
 import Main from "./Main";
@@ -27,6 +27,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { PreloaderActiveContext } from "../contexts/PreloaderActiveContext";
 import { MoviesContext } from "../contexts/MoviesContext";
 import { SaveMoviesContext } from "../contexts/SaveMoviesContext";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const history = useHistory()
@@ -39,6 +40,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState();
   const [preloaderActive, setPreloaderActive] = React.useState(false);
   const [sizeWindow, setSizeWindow] = React.useState(window.innerWidth)
+  const [message, setMessage] = React.useState("")
+  const [searchResult, setSearchResult] = React.useState(false)
 
   window.addEventListener("resize", resizeThrottler, false)
 
@@ -58,7 +61,10 @@ function App() {
       mainApi.getUser(token)
         .then((res) => {
           if (res) {
-            setLoggedIn(!loggedIn);
+            localStorage.setItem('loggedIn', true);
+            setLoggedIn(true);
+          } else {
+            localStorage.setItem('loggedIn', false);
           }
         }).catch((err) => {
           console.log(err);
@@ -72,6 +78,7 @@ function App() {
       .getUser(token)
       .then((data) => {
         setCurrentUser(data);
+        localStorage.setItem('currentUser', JSON.stringify(data));
       })
       .catch((err) => {
         console.log(err);
@@ -98,6 +105,7 @@ function App() {
             movieId: item.id,
           };
         });
+        localStorage.setItem('movies', JSON.stringify(cardMovies));
         setMovies(cardMovies);
         setAllMovies(cardMovies)
         setPreloaderActive(false)
@@ -111,6 +119,7 @@ function App() {
     mainApi
       .getSaveMovies()
       .then((movies) => {
+        localStorage.setItem('saveMovies', JSON.stringify(movies.data.reverse()));
         setSaveMovies(movies.data.reverse())
         setAllSaveMovies(movies.data.reverse())
       })
@@ -120,11 +129,31 @@ function App() {
   }
 
   React.useEffect(() => {
+    const log = localStorage.getItem('loggedIn')
     tokenCheck();
+    if (log !== "false") {
+      setLoggedIn(true)
+    }
     if (localStorage.getItem('token')) {
       apiGetUser();
+      if (localStorage.getItem('currentUser')) {
+        const user = JSON.parse(localStorage.getItem('currentUser'))
+
+        setCurrentUser(user)
+      }
       apiGetMovies();
+      if (localStorage.getItem('movies')) {
+        const movie = JSON.parse(localStorage.getItem('movies'));
+
+        setMovies(movie);
+        setAllMovies(movie)
+      }
       apiGetSaveMovies();
+      if (localStorage.getItem('saveMovies')) {
+        const saveMovie = JSON.parse(localStorage.getItem('saveMovies'));
+
+
+      }
     }
   }, []);
 
@@ -132,6 +161,7 @@ function App() {
     mainApi
       .createMovies(data, image, thumbnail)
       .then((newSaveMovies) => {
+        localStorage.setItem('saveMovies', JSON.stringify([newSaveMovies, ...saveMovies]));
         setSaveMovies([newSaveMovies, ...saveMovies]);
         setAllSaveMovies([newSaveMovies, ...allSaveMovies])
       })
@@ -171,7 +201,14 @@ function App() {
     mainApi
       .signUp(name, email, password)
       .then(() => {
-        history.push('/signin')
+        mainApi
+          .signIn(email, password)
+          .then((data) => {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('loggedIn', true);
+            setLoggedIn(true);
+            history.push('/movies')
+          })
       })
       .finally(() => {
         setPreloaderActive(false);
@@ -186,8 +223,10 @@ function App() {
       .signIn(email, password)
       .then((data) => {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('loggedIn', true);
         setLoggedIn(true);
-        history.push('/')
+        history.push('/movies')
+        window.location.reload()
       })
       .finally(() => {
         setPreloaderActive(false);
@@ -199,16 +238,25 @@ function App() {
 
   function onSignOut() {
     localStorage.removeItem('token');
+    localStorage.setItem('loggedIn', false);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('saveMovies');
+    localStorage.removeItem('searchMovies');
+    localStorage.removeItem('shortMovies');
     setLoggedIn(false)
   }
 
   function editUser(name, email) {
     mainApi
       .editUser(name, email)
-      .then((newUser) => setCurrentUser(newUser))
+      .then((newUser) => {
+        localStorage.setItem('currentUser', JSON.stringify(newUser))
+        setCurrentUser(newUser)
+        setMessage("Данные изменены")
+        setTimeout(() => setMessage(""), 5000)
+      })
       .finally(() => {
         setPreloaderActive(false);
-        history.push('/movies')
       })
       .catch((err) => {
         console.log(err);
@@ -237,64 +285,56 @@ function App() {
                     />
                     <Footer />
                   </Route>
-                  <Route path="/movies">
-                    {loggedIn ?
-                      <>
-                        <Header
-                          openNavTab={openNavTab}
-                          sizeWindow={sizeWindow}
-                        />
-                        <Movies
-                          searchForm={SearchForm}
-                          moviesCardList={MoviesCardList}
-                          setMovies={setMovies}
-                          saveMovie={saveMovie}
-                          removeMovies={removeMovies}
-                          Preloader={Preloader}
-                          setPreloaderActive={setPreloaderActive}
-                          sizeWindow={sizeWindow}
-                          allMovies={allMovies}
-                        />
-                        <Footer />
-                      </> : <Redirect to="/" />}
-                  </Route>
-                  <Route path="/saved-movies">
-                    {loggedIn ?
-                      <>
-                        <Header
-                          openNavTab={openNavTab}
-                          sizeWindow={sizeWindow}
-                        />
-                        <SavedMovies
-                          searchForm={SearchForm}
-                          moviesCardList={MoviesCardList}
-                          setMovies={setSaveMovies}
-                          saveMovie={saveMovie}
-                          removeMovies={removeMovies}
-                          Preloader={Preloader}
-                          setPreloaderActive={setPreloaderActive}
-                          sizeWindow={sizeWindow}
-                          allMovies={allSaveMovies}
-                        />
-                        <Footer />
-                      </> : <Redirect to="/" />}
-                  </Route>
-                  <Route path="/profile">
-                    {loggedIn ?
-                      <>
-                        <Header
-                          openNavTab={openNavTab}
-                          sizeWindow={sizeWindow}
-                        />
-                        <Profile
-                          Preloader={Preloader}
-                          setPreloaderActive={setPreloaderActive}
-                          editUser={editUser}
-                          onSignOut={onSignOut}
-                        />
-                      </>
-                      : <Redirect to="/" />}
-                  </Route>
+                  <ProtectedRoute
+                    path="/movies"
+                    Header={Header}
+                    openNavTab={openNavTab}
+                    sizeWindow={sizeWindow}
+                    component={Movies}
+                    searchForm={SearchForm}
+                    moviesCardList={MoviesCardList}
+                    setMovies={setMovies}
+                    saveMovie={saveMovie}
+                    removeMovies={removeMovies}
+                    Preloader={Preloader}
+                    setPreloaderActive={setPreloaderActive}
+                    allMovies={allMovies}
+                    searchResult={searchResult}
+                    setSearchResult={setSearchResult}
+                    Footer={Footer}
+                    setMessage={setMessage}
+                  />
+                  <ProtectedRoute
+                    path="/saved-movies"
+                    Header={Header}
+                    openNavTab={openNavTab}
+                    sizeWindow={sizeWindow}
+                    component={SavedMovies}
+                    searchForm={SearchForm}
+                    moviesCardList={MoviesCardList}
+                    setMovies={setSaveMovies}
+                    saveMovie={saveMovie}
+                    removeMovies={removeMovies}
+                    Preloader={Preloader}
+                    setPreloaderActive={setPreloaderActive}
+                    allMovies={allSaveMovies}
+                    searchResult={searchResult}
+                    setSearchResult={setSearchResult}
+                    Footer={Footer}
+                    setMessage={setMessage}
+                  />
+                  <ProtectedRoute
+                    path="/profile"
+                    Header={Header}
+                    openNavTab={openNavTab}
+                    sizeWindow={sizeWindow}
+                    component={Profile}
+                    Preloader={Preloader}
+                    setPreloaderActive={setPreloaderActive}
+                    editUser={editUser}
+                    onSignOut={onSignOut}
+                    message={message}
+                  />
                   <Route path="/signup">
                     <Register
                       Preloader={Preloader}

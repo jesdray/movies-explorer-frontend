@@ -1,12 +1,11 @@
 import React from "react";
 import { useFormWithValidation } from "./FormValidator";
-import { CurrentUserContext } from "../contexts/CurrentUserContext"
 
 function Profile(props) {
-    const user = React.useContext(CurrentUserContext);
+    const user = JSON.parse(localStorage.getItem('currentUser'))
     const name = useFormWithValidation(`${user.name}`, { isEmpty: true, minLength: 2, isChanged: true })
     const email = useFormWithValidation(`${user.email}`, { isEmpty: true, isEmail: true, isChanged: true })
-    const formValid = name.isValid && email.isValid;
+    const formValid = name.isValid && email.isValid && (name.isChanged || email.isChanged);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -30,6 +29,8 @@ function Profile(props) {
                 </div>
                 <span className="profile__span">{email.errorMessage}</span>
             </form>
+            <props.Preloader />
+            <p className="profile__message">{props.message}</p>
             <button className={formValid ? "profile__button" : "profile__button profile__button_disabled"} onClick={handleSubmit} disabled={formValid ? false : true}>Редактировать</button>
             <button className="profile__button profile__button_red" onClick={props.onSignOut}>Выйти из аккаунта</button>
         </div>

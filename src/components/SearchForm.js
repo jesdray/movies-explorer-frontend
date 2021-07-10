@@ -1,45 +1,93 @@
 import React from "react";
 
 function SearchForm(props) {
-    const movies = props.movies
+    const active = props.savedMovies ? localStorage.getItem('saveShortMovies') : localStorage.getItem('shortMovies')
     const [value, setValue] = React.useState("")
-    const [check, setCheck] = React.useState(false)
+    const [check, setCheck] = React.useState(active === "true" ? true : false)
+    const allMovie = JSON.parse(localStorage.getItem('movies'))
+    const AllSaveMovie = JSON.parse(localStorage.getItem('saveMovies'))
 
+    // Ищет по символам
+    function searchMovies(e) {
+        e.preventDefault();
+        let searchMovie;
+        let movies = props.allMovies
 
-    // фильтрует короткометражки
-    function searchShortMovies() {
-        props.setPreloaderActive(true)
-        if (!check) {
-            let searchMovie = props.movies.filter((movie) => {
+        props.setPreloaderActive(true);
+
+        if (value !== "") {
+            searchMovie = movies.filter((movie) => {
+                return movie.nameRU.toLowerCase().includes(value.toLowerCase());
+            })
+
+            if (check) {
+                searchMovie = searchMovie.filter((movie) => {
+                    return movie.duration <= 40;
+                })
+                console.log(searchMovie);
+
+                if (props.savedMovies) {
+                    localStorage.setItem('saveShortMovies', true);
+                } else {
+                    localStorage.setItem('shortMovies', true);
+                }
+            }
+
+            props.setMovies(searchMovie);
+            if (searchMovie.length === 0) {
+                props.setSearchResult(true);
+                if (props.savedMovies) {
+                    localStorage.setItem('saveShortMovies', false);
+                    localStorage.setItem('saveSearchMovies', JSON.stringify(searchMovie));
+                } else {
+                    localStorage.setItem('shortMovies', false);
+                    localStorage.setItem('searchMovies', JSON.stringify(searchMovie));
+                }
+                props.setPreloaderActive(false);
+                return
+            } else {
+                props.setSearchResult(false)
+                if (props.savedMovies) {
+                    localStorage.setItem('saveShortMovies', check);
+                    localStorage.setItem('saveSearchMovies', JSON.stringify(searchMovie));
+                } else {
+                    localStorage.setItem('shortMovies', check);
+                    localStorage.setItem('searchMovies', JSON.stringify(searchMovie));
+                }
+                props.setPreloaderActive(false);
+                return
+            }
+        }
+
+        if (check) {
+            searchMovie = movies.filter((movie) => {
                 return movie.duration <= 40;
             })
 
-            props.setMovies(searchMovie)
-            props.setPreloaderActive(false)
-        } else {
-            props.setMovies(props.allMovies)
-            props.setPreloaderActive(false)
+            props.setMovies(searchMovie);
+            if (props.savedMovies) {
+                localStorage.setItem('saveShortMovies', true);
+                localStorage.setItem('saveSearchMovies', JSON.stringify(searchMovie));
+            } else {
+                localStorage.setItem('shortMovies', true);
+                localStorage.setItem('searchMovies', JSON.stringify(searchMovie));
+            }
+            props.setPreloaderActive(false);
+            return
         }
 
-        setCheck(!check)
-    }
-
-    // Ищит по символам
-    function searchMovies(e) {
-        e.preventDefault();
-
-        props.setPreloaderActive(true)
-        if (value !== "") {
-            const searchMovie = props.movies.filter((movie) => {
-                return movie.nameRU.toLowerCase().includes(value.toLowerCase())
-            })
-
-            props.setMovies(searchMovie)
-            props.setPreloaderActive(false)
+        props.setMovies(props.allMovies);
+        if (props.savedMovies) {
+            localStorage.removeItem('saveSearchMovies');
+            localStorage.setItem('saveShortMovies', false);
+            props.setMovies(AllSaveMovie);
         } else {
-            check === false && props.setMovies(props.allMovies)
-            props.setPreloaderActive(false)
+            localStorage.removeItem('searchMovies');
+            localStorage.setItem('shortMovies', false);
+            props.setMovies(allMovie);
         }
+        props.setSearchResult(false)
+        props.setPreloaderActive(false)
     }
 
     return (
@@ -50,8 +98,8 @@ function SearchForm(props) {
                     <button type="submit" className="search__search-button">Поиск</button>
                 </div>
                 <div className="search__container">
-                    <input className="search__checkbox" type="checkbox" id="short-film" name="short film" value="true" checked={check} onChange={searchShortMovies} />
-                    <label htmlFor="short-film" ><div className="search__circle" /></label>
+                    <input className="search__checkbox" type="checkbox" id="short-film" name="short film" value="true" checked={check} onChange={searchMovies} />
+                    <label htmlFor="short-film" onClick={() => setCheck(!check)} ><div className="search__circle" /></label>
                     <p className="search__checkbox-name">Короткометражки</p>
                 </div>
             </form>
