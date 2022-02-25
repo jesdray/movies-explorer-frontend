@@ -1,23 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useFormWithValidation } from "./FormValidator";
 
 function Profile(props) {
+    const user = JSON.parse(localStorage.getItem('currentUser'))
+    const name = useFormWithValidation(`${user.name}`, { isEmpty: true, minLength: 2, isChanged: true })
+    const email = useFormWithValidation(`${user.email}`, { isEmpty: true, isEmail: true, isChanged: true })
+    const formValid = name.isValid && email.isValid && (name.isChanged || email.isChanged);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        props.setPreloaderActive(true)
+        props.editUser(name.value, email.value)
+    }
 
     return (
         <div className="profile">
-            <h1 className="profile__title">Привет, Виталий!</h1>
-            <form className="profile__form">
+            <h1 className="profile__title">Привет, {user.name}!</h1>
+            <form className="profile__form" onSubmit={handleSubmit}>
                 <div className="profile__box">
                     <p className="profile__input-name">Имя</p>
-                    <input className="profile__input" value="Виталий"></input>
+                    <input className="profile__input" value={name.value} onChange={(e) => name.onChange(e)} onBlur={(e) => name.onBlur(e)} />
                 </div>
+                <span className="profile__span">{name.errorMessage}</span>
                 <div className="profile__box">
                     <p className="profile__input-name">E-mail</p>
-                    <input className="profile__input" value="pochta@yandex.ru"></input>
+                    <input className="profile__input" value={email.value} onChange={(e) => email.onChange(e)} onBlur={(e) => email.onBlur(e)} />
                 </div>
+                <span className="profile__span">{email.errorMessage}</span>
             </form>
-            <Link className="profile__link">Редактировать</Link>
-            <Link className="profile__link profile__link_red" to="/signup">Выйти из аккаунта</Link>
+            <props.Preloader />
+            <p className="profile__message">{props.message}</p>
+            <button className={formValid ? "profile__button" : "profile__button profile__button_disabled"} onClick={handleSubmit} disabled={formValid ? false : true}>Редактировать</button>
+            <button className="profile__button profile__button_red" onClick={props.onSignOut}>Выйти из аккаунта</button>
         </div>
     );
 }
