@@ -1,0 +1,8 @@
+.card__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 14px 0 29px;
+}

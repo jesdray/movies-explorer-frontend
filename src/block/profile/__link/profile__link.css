@@ -1,0 +1,17 @@
+.profile__link {
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: center;
+    margin-top: 220px;
+}
+
+.profile__link:hover {
+    opacity: 0.7;
+}
+
+.profile__link:nth-last-child(1) {
+    margin-top: 16px;
+}

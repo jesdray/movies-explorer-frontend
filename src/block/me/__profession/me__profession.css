@@ -1,0 +1,21 @@
+.me__profession {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    padding: 18px 0 26px;
+}
+
+@media screen and (max-width: 768px) {
+    .me__profession {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .me__profession {
+        font-size: 11px;
+        padding: 20px 0;
+    }
+}

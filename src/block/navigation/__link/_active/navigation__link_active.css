@@ -1,0 +1,5 @@
+.navigation__link_active {
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 23px;
+}

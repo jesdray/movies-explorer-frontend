@@ -1,0 +1,9 @@
+.project__back {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: #2BE080;
+    width: 25%;
+    min-height: 36px;
+}

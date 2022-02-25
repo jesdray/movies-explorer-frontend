@@ -1,0 +1,20 @@
+.navigation__button {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 22px 0 105px 90%;
+    background-image: url("../../../images/icon_plus.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+    .navigation__button {
+        margin-bottom: 100px;
+    }
+}

@@ -1,0 +1,8 @@
+.promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #5C5C5C;
+    width: 100%;
+}

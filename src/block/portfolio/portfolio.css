@@ -1,0 +1,13 @@
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 1280px;
+    padding-top: 100px;
+}
+
+@media screen and (max-width: 425px) {
+    .portfolio {
+        padding-top: 70px;
+    }
+}

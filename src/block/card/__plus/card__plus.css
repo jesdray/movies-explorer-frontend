@@ -1,0 +1,16 @@
+.card__plus {
+    border: none;
+    border-radius: 36px;
+    outline: none;
+    background-color: #F9F9F9;
+    background-image: url("../../../images/icon_plus.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.card__plus:hover {
+    opacity: 0.8;
+}

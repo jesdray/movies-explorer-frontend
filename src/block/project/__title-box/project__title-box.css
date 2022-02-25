@@ -1,0 +1,16 @@
+.project__title-box {
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-top: 110px;
+}
+
+@media screen and (max-width: 425px) {
+    .project__title-box {
+        padding-top: 70px;
+    }
+}

@@ -1,0 +1,21 @@
+.me__about {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .me__about {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .me__about {
+        font-size: 11px;
+        line-height: 16px;
+    }
+}

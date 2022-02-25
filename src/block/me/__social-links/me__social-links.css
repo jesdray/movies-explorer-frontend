@@ -1,0 +1,12 @@
+.me__social-links {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 99px 0 0;
+}
+
+@media screen and (max-width: 425px) {
+    .me__social-links {
+        padding-top: 40px;
+    }
+}

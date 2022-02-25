@@ -1,0 +1,29 @@
+.footer__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 20px 0;
+    width: 30%;
+}
+
+@media screen and (max-width: 940px) {
+    .footer__menu {
+        width: 35%;
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .footer__menu{
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 665px) {
+    .footer__menu {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+}

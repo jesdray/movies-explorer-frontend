@@ -1,0 +1,14 @@
+.footer__box {
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1280px;
+}
+
+@media screen and (max-width: 665px) {
+    .footer__box {
+        flex-direction: column-reverse;
+    }
+}

@@ -1,0 +1,28 @@
+.header__button {
+    background-color: #2BE080;
+    font-size: 12px;
+    line-height: 16px;
+    width: 76px;
+    height: 32px;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 425px) {
+    .header__button {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+    }
+}
+

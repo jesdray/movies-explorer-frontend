@@ -1,0 +1,9 @@
+.project__front {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F2F2;
+    width: 75%;
+    min-height: 36px;
+}

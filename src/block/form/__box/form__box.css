@@ -1,0 +1,8 @@
+.form__box {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__box:nth-last-child(1) {
+    padding-top: 220px;
+}
